@@ -23,6 +23,15 @@ if strcmp(newFly,'y')
     getFlyDetails(exptInfo)
 end
 
+%% Setup camera 
+[~, path, ~, ~] = getDataFileName(exptInfo);
+videoPath = [path,'rawVideo\'];
+if ~isdir(videoPath)
+    mkdir(videoPath);
+end
+disp(videoPath)
+input('Recording started? ','s');
+
 %% Run pre-expt routines (measure pipette resistance etc.)
 contAns = input('Run preExptRoutine? ','s');
 if strcmp(contAns,'y')

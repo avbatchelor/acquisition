@@ -1,8 +1,9 @@
-function [data,settings,stim,trialMeta,exptInfo] = acquireTrial(pulseType,stim,exptInfo,preExptData,trialMeta,varargin)
+function [data,settings,stim,trialMeta,exptInfo] = acquireTrialWithCamera(pulseType,stim,exptInfo,preExptData,trialMeta,varargin)
 
 fprintf('\n*********** Acquiring Trial ***********') 
 
 daqreset;
+
 %% Trial time 
 trialMeta.trialStartTime = datestr(now,'HH:MM:SS'); 
 
@@ -16,12 +17,9 @@ end
 
 if ~exist('stim','var')
     stim = noStimulus; 
+    stim.waveDur = 0; 
 end
 
-%% Create camera trigger
-extTrig = ones(size(stim.stimulus));
-extTrig(1:100) = 0;
-extTrig(length(extTrig)-100:end) = 0;
 
 %% Load settings    
 settings = ephysSettings(stim); 
@@ -36,43 +34,39 @@ switch pulseType
 end   
 settings.pulse.Command(settings.pulse.Start:settings.pulse.End) = settings.pulse.Amp.*ones(settings.pulse.Dur*settings.sampRate.out,1);
 
+%% Create camera trigger
+extTrig = zeros(size(stim.stimulus));
+frameInterval = round(settings.sampRate.out/settings.camRate);
+extTrig(1:frameInterval:end) = 1;
+trialMeta.cameraTriggerCommand = extTrig;
 
 %% Configure daq
 % daqreset;
 devID = 'Dev1';
 
 %% Configure ouput session
-sOut = daq.createSession('ni');
-sOut.Rate = settings.sampRate.out;
+s = daq.createSession('ni');
+s.Rate = settings.sampRate.out;
+s.DurationInSeconds = stim.totalDur;
 
 % Analog Channels / names for documentation
-sOut.addAnalogOutputChannel(devID,0:1,'Voltage');
-sOut.Rate = settings.sampRate.out;
+s.addAnalogOutputChannel(devID,0:1,'Voltage');
 
 % Add digital output for cameral channel 
-sOut.addDigitalChannel('Dev1','port0/line3','OutputOnly');
+s.addDigitalChannel('Dev1','port0/line3','OutputOnly');
 
-% Add trigger
-sOut.addTriggerConnection('External','Dev1/PFI3','StartTrigger');
-
-
-%% Configure input session
-sIn = daq.createSession('ni');
-sIn.Rate = settings.sampRate.in;
-sIn.DurationInSeconds = stim.totalDur;
-
-aI = sIn.addAnalogInputChannel(devID,settings.bob.inChannelsUsed,'Voltage');
+% Add analog input channels 
+aI = s.addAnalogInputChannel(devID,settings.bob.inChannelsUsed,'Voltage');
 for i = 1:length(settings.bob.inChannelsUsed)
     aI(i).InputType = settings.bob.aiType;
 end
 
-% Add Trigger
-sIn.addTriggerConnection('Dev1/PFI1','External','StartTrigger');
+% Add digital input for camera strobe 
+s.addCounterInputChannel('Dev1', 'ctr0', 'EdgeCount');
 
 %% Run trials
-sOut.queueOutputData([stim.stimulus,settings.pulse.Command,extTrig]);
-sOut.startBackground; % Start the session that receives start trigger first
-rawData = sIn.startForeground;
+s.queueOutputData([stim.stimulus,settings.pulse.Command,extTrig]);
+rawData = s.startForeground;
 
 
 %% Decode telegraphed output
@@ -130,9 +124,17 @@ if nargin ~= 0 && nargin ~= 1
     end
 end
 
+%% Copy movies 
+groupedVideoPath = [path,'\groupedVideos\','trial_',num2str(trialMeta.trialNum),'\'];
+if ~isdir(groupedVideoPath)
+    mkdir(groupedVideoPath);
+end
+movefile([path,'rawVideo\*'],groupedVideoPath,'f');
+
+
 %% Close daq objects
-sOut.stop;
-sIn.stop;
+s.stop;
+s.stop;
 
 %% Plot data
 plotData(stim,settings,data)

@@ -8,6 +8,9 @@ settings.devID = 'Dev1';
 settings.sampRate.out   = stim.sampleRate;
 settings.sampRate.in    = 10E3;
 
+% Camera frame rate 
+settings.camRate = 30; 
+
 % Break out box 
 settings.bob.currCh = 0;
 settings.bob.voltCh = 1;
@@ -18,7 +21,7 @@ settings.bob.modeCh = 5;
 settings.bob.speakerCommandCh = 6;
 settings.bob.piezoSGReading = 7;
 settings.bob.aiType = 'SingleEnded';
-settings.bob.inChannelsUsed  = 0:7;
+settings.bob.inChannelsUsed  = [0:7];
 
 % Current input settings
 settings.current.betaRear   = 1; % Rear switch for current output set to beta = 100mV/pA
