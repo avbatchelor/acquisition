@@ -35,10 +35,10 @@ end
 settings.pulse.Command(settings.pulse.Start:settings.pulse.End) = settings.pulse.Amp.*ones(settings.pulse.Dur*settings.sampRate.out,1);
 
 %% Create camera trigger
-extTrig = zeros(size(stim.stimulus));
+camTrig = zeros(size(stim.stimulus));
 frameInterval = round(settings.sampRate.out/settings.camRate);
-extTrig(1:frameInterval:end) = 1;
-trialMeta.cameraTriggerCommand = extTrig;
+camTrig(1:frameInterval:end) = 1;
+trialMeta.cameraTriggerCommand = camTrig;
 
 %% Configure daq
 % daqreset;
@@ -50,10 +50,18 @@ s.Rate = settings.sampRate.out;
 s.DurationInSeconds = stim.totalDur;
 
 % Analog Channels / names for documentation
-s.addAnalogOutputChannel(devID,0:1,'Voltage');
-
-% Add digital output for cameral channel 
-s.addDigitalChannel('Dev1','port0/line3','OutputOnly');
+if isa(stim,'WindStimulus')
+    s.addAnalogOutputChannel(devID,0,'Voltage'); % Current injection commmand
+    s.addDigitalChannel('Dev1','port0/line3','OutputOnly');
+    s.addDigitalChannel('Dev1','port0/line4','OutputOnly');
+    disp('Using wind stimulus')
+    outputData = [settings.pulse.Command,camTrig,stim.stimulus];
+else 
+    s.addAnalogOutputChannel(devID,0:1,'Voltage'); % Speaker/piezo command & current injection command
+    % Add digital output for cameral channel 
+    s.addDigitalChannel('Dev1','port0/line3','OutputOnly');
+    outputData = [stim.stimulus,settings.pulse.Command,camTrig];
+end
 
 % Add analog input channels 
 aI = s.addAnalogInputChannel(devID,settings.bob.inChannelsUsed,'Voltage');
@@ -65,7 +73,7 @@ end
 s.addCounterInputChannel('Dev1', 'ctr0', 'EdgeCount');
 
 %% Run trials
-s.queueOutputData([stim.stimulus,settings.pulse.Command,extTrig]);
+s.queueOutputData(outputData);
 rawData = s.startForeground;
 
 
@@ -129,8 +137,11 @@ groupedVideoPath = [path,'\groupedVideos\','trial_',num2str(trialMeta.trialNum),
 if ~isdir(groupedVideoPath)
     mkdir(groupedVideoPath);
 end
-movefile([path,'rawVideo\*'],groupedVideoPath,'f');
-
+try 
+    movefile([path,'rawVideo\*'],groupedVideoPath,'f');
+catch
+    disp('Recording not on')
+end
 
 %% Close daq objects
 s.stop;
