@@ -54,7 +54,7 @@ if strcmp(contAns,'y')
 end
 
 %% Merge trials 
-%mergeTrials(exptInfo)
+mergeTrials(exptInfo)
 
 %% Get post experiment info and write to excel file 
 % if ~strcmp(prefixCode,'test')
