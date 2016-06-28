@@ -22,8 +22,9 @@ end
 
 
 %% Load settings    
-settings = ephysSettings(stim); 
+ephysSettings; 
      
+%% Generate pulse
 switch pulseType
     case 'none'
         settings.pulse.Amp = 0;
@@ -32,11 +33,14 @@ switch pulseType
     case 'v'
         settings.pulse.Amp = -5/6;
 end   
-settings.pulse.Command(settings.pulse.Start:settings.pulse.End) = settings.pulse.Amp.*ones(settings.pulse.Dur*settings.sampRate.out,1);
+
+settings.pulse.Command = zeros(size(stim.stimulus));
+settings.pulse.Command(settings.pulse.Start:settings.pulse.End) = settings.pulse.Amp;
+
 
 %% Create camera trigger
 camTrig = zeros(size(stim.stimulus));
-frameInterval = round(settings.sampRate.out/settings.camRate);
+frameInterval = round(stim.sampleRate/settings.camRate);
 camTrig(1:frameInterval:end) = 1;
 trialMeta.cameraTriggerCommand = camTrig;
 
@@ -46,7 +50,7 @@ devID = 'Dev1';
 
 %% Configure ouput session
 s = daq.createSession('ni');
-s.Rate = settings.sampRate.out;
+s.Rate = stim.sampleRate;
 s.DurationInSeconds = stim.totalDur;
 
 % Analog Channels / names for documentation
