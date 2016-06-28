@@ -1,6 +1,9 @@
 function settings = ephysSettings(stim)
 
 %% Parameters
+% Data folder 
+dataDirectory = 'C:\Users\Alex\My Documents\Data\ephysData\';
+
 % Device
 settings.devID = 'Dev1';
 

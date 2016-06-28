@@ -1,8 +1,8 @@
 function [flyNum, cellNum, cellExpNum] = getFlyNum(prefixCode, expNum, newFly, newCell)
 
-        % Make numbers strings
+    % Make numbers strings
     eNum = num2str(expNum,'%03d');
-    microCzarSettings;   % Loads settings
+    ephysSettings;   % Loads settings
     
     path = [dataDirectory,prefixCode,'\expNum',eNum,'\flyNum'];
     % Determine fly number 
