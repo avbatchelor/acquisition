@@ -13,6 +13,7 @@ settings.yMaxVal = 4.4616;
 settings.numInts = 271;
 settings.cutoffFreq = 50;
 settings.aiType = 'SingleEnded';
+settings.outChannelsUsed = 6:7; % digital output for the olfactometer (TO)
 
 settings.sensorRes  = 8200;
 settings.mmConv = 25.4;
