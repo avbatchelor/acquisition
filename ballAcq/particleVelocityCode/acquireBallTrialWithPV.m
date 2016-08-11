@@ -12,7 +12,7 @@ if ~exist('stim','var')
 end
 
 %% Load settings    
-settings = ballSettings; 
+settings = ballSettingsWithPV; 
      
 %% Configure session
 s = daq.createSession('ni');
@@ -24,7 +24,7 @@ s.addAnalogOutputChannel(settings.devID,trialMeta.outputCh,'Voltage');
 
 % Add analog input channels (sensor data)
 aI = s.addAnalogInputChannel(settings.devID,settings.inChannelsUsed,'Voltage');
-for i = 1+settings.inChannelsUsed
+for i = 1:length(settings.inChannelsUsed)
     aI(i).InputType = settings.aiType;
 end
 
@@ -37,8 +37,10 @@ s.stop;
 s.stop;
 
 %% Allocate data 
-data.xVel = rawData(:,1);
-data.yVel = rawData(:,2);
+data.KEraw = rawData(:,1);
+data.acqStim = rawData(:,2);
+startPadEndIdx = (Stim.startPadDur*Stim.sampleRate)-1;
+data.pv = cumtrapz(Stim.timeVec,(KEraw-mean(KEraw(1:startPadEndIdx)))./settings.preamp_gain)./settings.KE_sf;
 
 %% Only if saving data
 if nargin ~= 0 && nargin ~= 1
@@ -62,11 +64,11 @@ if nargin ~= 0 && nargin ~= 1
 end
 
 
-
 %% Plot data
-plotBallData(Stim,rawData,trialMeta,exptInfo) 
-
-
-
+figure(1) 
+subplot(2,1,1)
+plot(Stim.timeVec,data.acqStim)
+subplot(2,1,2)
+plot(Stim.timeVec,data.pv)
 
 end

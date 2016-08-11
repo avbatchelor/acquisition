@@ -29,7 +29,7 @@ while rep < 4
         stim.speaker = 3; 
     end
     trialMeta.outputCh = switchSpeakerBall(stim.speaker);
-    acquireBallTrial(stim,exptInfo,trialMeta);
+    acquireBallTrialWithPV(stim,exptInfo,trialMeta);
     if count == trialsPerBlock
         count = 1;
         stimRan = speakerNonRan(randperm(trialsPerBlock));
