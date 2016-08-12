@@ -15,8 +15,7 @@ stimRan = speakerNonRan(randperm(trialsPerBlock));
 
 count = 1;
 rep = 0;
-while rep < 4
-    rep = rep + 1; 
+while rep < 5
     trialMeta.pauseDur = rand(1,1);
     pause on 
     pause(trialMeta.pauseDur);
@@ -33,6 +32,7 @@ while rep < 4
     if count == trialsPerBlock
         count = 1;
         stimRan = speakerNonRan(randperm(trialsPerBlock));
+        rep = rep + 1; 
     else
         count = count+1;
     end

@@ -38,9 +38,10 @@ s.stop;
 
 %% Allocate data 
 data.KEraw = rawData(:,1);
-data.acqStim = rawData(:,2);
-startPadEndIdx = (Stim.startPadDur*Stim.sampleRate)-1;
-data.pv = cumtrapz(Stim.timeVec,(KEraw-mean(KEraw(1:startPadEndIdx)))./settings.preamp_gain)./settings.KE_sf;
+data.acqStim1 = rawData(:,2);
+data.acqStim2 = rawData(:,3);
+startPadEndIdx = (stim.startPadDur*stim.sampleRate)-1;
+data.pv = cumtrapz(stim.timeVec,(data.KEraw-mean(data.KEraw(1:startPadEndIdx)))./settings.preamp_gain)./settings.KE_sf;
 
 %% Only if saving data
 if nargin ~= 0 && nargin ~= 1
@@ -66,9 +67,11 @@ end
 
 %% Plot data
 figure(1) 
-subplot(2,1,1)
-plot(Stim.timeVec,data.acqStim)
-subplot(2,1,2)
+subplot(3,1,1)
+plot(Stim.timeVec,data.acqStim1)
+subplot(3,1,2)
+plot(Stim.timeVec,data.acqStim2)
+subplot(3,1,3)
 plot(Stim.timeVec,data.pv)
 
 end
