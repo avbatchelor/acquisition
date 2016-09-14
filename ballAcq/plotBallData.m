@@ -12,7 +12,7 @@ warning('off','MATLAB:legend:IgnoringExtraEntries')
 settings = ballSettings;
 [procData.vel(:,1),procData.disp(:,1)] = processBallData(rawData(:,1),settings.xMinVal,settings.xMaxVal,settings,stim);
 [procData.vel(:,2),procData.disp(:,2)] = processBallData(rawData(:,2),settings.yMinVal,settings.yMaxVal,settings,stim);
-sumData = sumBallData(procData,trialMeta,exptInfo);
+sumData = sumBallData2(procData,trialMeta,exptInfo);
 
 figure(1)
 h(1) = subplot(6,2,1) ;
@@ -75,10 +75,10 @@ ylabel('Y displacement (mm)')
 title('X-Y displacement')
 
 subtightplot (6, 2, 11, [0.1 0.05], [0.1 0.01], [0.1 0.01]);
-bar(sumData.histCenters,sumData.yVelCounts)
+bar(1:length(sumData.trialSpeed),sumData.trialSpeed)
 xlim([-20 20])
-xlabel('Forward velocity (mm/s)')
-ylabel('Counts')
+xlabel('Trial number')
+ylabel('Trial average speed (mm/s)')
 set(get(gca,'YLabel'),'Rotation',0,'HorizontalAlignment','right')
 box off;
 set(gca,'TickDir','out')
