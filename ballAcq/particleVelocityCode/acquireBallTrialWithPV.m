@@ -64,7 +64,12 @@ if nargin ~= 0 && nargin ~= 1
     end
 end
 
+%% Filter signal
+d = designfilt('bandstopiir','FilterOrder',2, ...
+               'HalfPowerFrequency1',55,'HalfPowerFrequency2',65, ...
+               'DesignMethod','butter','SampleRate',settings.sampRate);
 
+filteredSignal = filtfilt(d,data.KEraw);
 %% Plot data
 figure(1) 
 subplot(3,1,1)
@@ -72,6 +77,8 @@ plot(Stim.timeVec,data.acqStim1)
 subplot(3,1,2)
 plot(Stim.timeVec,data.acqStim2)
 subplot(3,1,3)
-plot(Stim.timeVec,data.pv)
+plot(Stim.timeVec,data.KEraw,'b')
+% hold on 
+% plot(Stim.timeVec,filteredSignal,'r')
 
 end
