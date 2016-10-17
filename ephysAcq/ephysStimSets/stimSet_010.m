@@ -1,6 +1,6 @@
 function stimSet_010(exptInfo,preExptData)
 
-% Play a range of stimuli through 1 speaker 
+% Play a range of stimuli (pips, chirps, courtship/pulse song, clicks, pure tones and AM tones) through middle speaker
 
 %% Archive this code
 archiveExpCode(exptInfo)

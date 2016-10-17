@@ -1,6 +1,6 @@
 function stimSet_016(exptInfo,preExptData)
 
-% To play a range of steps through the piezo with longer timescales
+% Square wave with 1Hz and 0.05Hz freq, maxVoltage is 1 through piezo
 
 %% Archive this code
 archiveExpCode(exptInfo)

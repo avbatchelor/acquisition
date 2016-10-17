@@ -1,6 +1,6 @@
 function stimSet_014(exptInfo,preExptData)
 
-% To play a range of steps through the piezo 
+% Square waves of 1Hz, 0.5Hz, 0.1Hz carrier through piezo
 
 %% Archive this code
 archiveExpCode(exptInfo)

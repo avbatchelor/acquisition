@@ -1,6 +1,7 @@
 function stimSet_018(exptInfo,preExptData)
 
-% Wind stimulus with camera
+% Single step with 5 second duration to switch olfactometer on and off,
+% with camera
 
 %% Archive this code
 archiveExpCode(exptInfo)

@@ -1,6 +1,6 @@
 function stimSet_011(exptInfo,preExptData)
 
-% Produces the default pip train while switching between all three speakers
+% 300Hz pure tone through middle speaker 
 
 %% Archive this code
 archiveExpCode(exptInfo)

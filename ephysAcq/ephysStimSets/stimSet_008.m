@@ -1,6 +1,6 @@
 function stimSet_008(exptInfo,preExptData)
 
-% Probe off for 5 trials on for 5 trials with the same pip stimulus
+% Probe experiment with pip stimulus
 
 %% Archive this code
 archiveExpCode(exptInfo)

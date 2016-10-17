@@ -1,6 +1,6 @@
 function stimSet_007(exptInfo,preExptData)
 
-% Produces the default pip train while switching between all three speakers
+% Pips from middle speaker
 
 %% Archive this code
 archiveExpCode(exptInfo)

@@ -1,7 +1,6 @@
 function stimSet_017(exptInfo,preExptData)
 
-% To play a range of steps through the piezo with longer timescales and
-% with speaker 
+% 5 second no stimulus trial 
 
 %% Archive this code
 archiveExpCode(exptInfo)

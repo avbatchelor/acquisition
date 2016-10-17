@@ -1,6 +1,6 @@
 function stimSet_003(exptInfo,preExptData)
 
-% Produces the default pip train while switching between all three speakers
+% Pips with carrier frequency of 100, 200, 300 or 400Hz while switching between all three speakers
 
 %% Archive this code
 archiveExpCode(exptInfo)

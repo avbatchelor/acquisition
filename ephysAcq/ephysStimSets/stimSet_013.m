@@ -1,6 +1,6 @@
 function stimSet_013(exptInfo,preExptData)
 
-% To play a range of stimuli through the piezo 
+% Full range of motion 10Hz sine wave through piezo 
 
 %% Archive this code
 archiveExpCode(exptInfo)

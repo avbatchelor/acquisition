@@ -1,6 +1,6 @@
 function stimSet_002(exptInfo,preExptData)
 
-% Produces the default pip train while switching between all three speakers
+% Pips, courtship song, pulse song or chirps while switching between all three speakers
 
 %% Archive this code
 archiveExpCode(exptInfo)

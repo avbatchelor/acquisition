@@ -1,6 +1,6 @@
 function stimSet_012(exptInfo,preExptData)
 
-% To play a range of stimuli for 15um piezo
+% Play a range of stimuli (pips, chirps, courtship/pulse song, clicks, pure tones and AM tones) through 15um piezo (max voltage is 4)
 
 %% Archive this code
 archiveExpCode(exptInfo)
