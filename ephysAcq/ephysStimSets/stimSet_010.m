@@ -1,6 +1,6 @@
 function stimSet_010(exptInfo,preExptData)
 
-% Produces the default pip train while switching between all three speakers
+% Play a range of stimuli through 1 speaker 
 
 %% Archive this code
 archiveExpCode(exptInfo)
@@ -11,7 +11,7 @@ stimRan = randperm(numberOfStimuli);
 
 count = 1;
 repeat = 1;
-while repeat < 4
+while repeat < 10
     trialMeta.stimNum = stimRan(count);
     fprintf(['\nStimNum = ',num2str(trialMeta.stimNum)])
     fprintf(['\nRepeatNum = ',num2str(repeat)])
