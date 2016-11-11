@@ -51,8 +51,8 @@ switch stimNum
         stim.endPadDur = 10;
         % Make current command
         currentCommand = zeros(size(stim.stimulus));
-        pulseStartInd = (stim.startPadDur+stim.stimDur+1)*sampRate;
-        pulseEndInd = (stim.startPadDur+stim.stimDur+1+0.25)*sampRate;
+        pulseStartInd = (stim.startPadDur+stim.stimDur)*sampRate;
+        pulseEndInd = (stim.startPadDur+stim.stimDur+0.25)*sampRate;
         currentCommand(pulseStartInd:pulseEndInd) = 3*(-0.0394/4);
     case 3 % with larger post-stimulus current injection
         % Make stimulus
@@ -62,24 +62,24 @@ switch stimNum
         stim.endPadDur = 10;
         % Make current command
         currentCommand = zeros(size(stim.stimulus));
-        pulseStartInd = (stim.startPadDur+stim.stimDur+1)*sampRate;
-        pulseEndInd = (stim.startPadDur+stim.stimDur+1+0.25)*sampRate;
+        pulseStartInd = (stim.startPadDur+stim.stimDur)*sampRate;
+        pulseEndInd = (stim.startPadDur+stim.stimDur+0.25)*sampRate;
         currentCommand(pulseStartInd:pulseEndInd) = 2*(-0.0394/4);
     case 4 % without a stimulus 
         stim = noStimulus;
         stim.waveDur = 14;
         % Make current command
         currentCommand = zeros(size(stim.stimulus));
-        pulseStartInd = (5)*sampRate;
-        pulseEndInd = (5.5)*sampRate;
+        pulseStartInd = (4)*sampRate;
+        pulseEndInd = (4.25)*sampRate;
         currentCommand(pulseStartInd:pulseEndInd) = 3*(-0.0394/4);
     case 5 % without a stimulus with larger current injection 
         stim = noStimulus;
         stim.waveDur = 14;
         % Make current command
         currentCommand = zeros(size(stim.stimulus));
-        pulseStartInd = (5)*sampRate;
-        pulseEndInd = (5.5)*sampRate;
+        pulseStartInd = (4)*sampRate;
+        pulseEndInd = (4.25)*sampRate;
         currentCommand(pulseStartInd:pulseEndInd) = 2*(-0.0394/4);     
 end
 end
