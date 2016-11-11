@@ -6,7 +6,7 @@ function stimSet_020(exptInfo,preExptData)
 archiveExpCode(exptInfo)
 
 %% Set up and acquire with the stimulus set
-numberOfStimuli = 22;
+numberOfStimuli = 18;
 stimRan = randperm(numberOfStimuli);
 
 count = 1;
@@ -34,31 +34,31 @@ switch stimNum
     case 1
         stim = PipStimulus;
         stim.speaker = 2;
-        stim.maxVoltage = 0.04;
+        stim.maxVoltage = 0.08;
     case 2
         stim = Chirp;
         stim.speaker = 2;
-        stim.maxVoltage = 0.04;
+        stim.maxVoltage = 0.08;
     case 3
         stim = Chirp;
         stim.startFrequency  = 1500;
         stim.endFrequency    = 90;
-        stim.maxVoltage = 0.04;
+        stim.maxVoltage = 0.08;
     case 4
         stim = CourtshipSong;
         stim.speaker = 2;
-        stim.maxVoltage = 0.04;
+        stim.maxVoltage = 0.08;
     case 5
         stim = PulseSong;
         stim.speaker = 2;
-        stim.maxVoltage = 0.04;
+        stim.maxVoltage = 0.08;
     case num2cell(6:13)
         stimNumStart = 6;
         carrierInd = stimNum-stimNumStart+1;
         stim = SineWave;
         carrierRange = (1:8).*50;
         stim.carrierFreqHz = carrierRange(carrierInd);
-        stim.maxVoltage = 0.04;
+        stim.maxVoltage = 0.08;
     case num2cell(14:18)
         stimNumStart = 14;
         modInd = stimNum-stimNumStart+1;
@@ -66,7 +66,7 @@ switch stimNum
         stim = AmTone;
         stim.carrierFreqHz = 150;
         stim.modFreqHz = modRange(modInd);
-        stim.maxVoltage = 0.04;
+        stim.maxVoltage = 0.08;
 end
 end
 

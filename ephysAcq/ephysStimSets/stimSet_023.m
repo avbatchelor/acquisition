@@ -1,17 +1,17 @@
-function stimSet_021(exptInfo,preExptData)
+function stimSet_023(exptInfo,preExptData)
 
-% Repeat courtship song and pulse song through middle speaker
+% Play AM at 250Hz carrier through middle speaker
 
 %% Archive this code
 archiveExpCode(exptInfo)
 
 %% Set up and acquire with the stimulus set
-numberOfStimuli = 2;
+numberOfStimuli = 5;
 stimRan = randperm(numberOfStimuli);
 
 count = 1;
 repeat = 1;
-while repeat < 11
+while repeat < 10
     trialMeta.stimNum = stimRan(count);
     fprintf(['\nStimNum = ',num2str(trialMeta.stimNum)])
     fprintf(['\nRepeatNum = ',num2str(repeat)])
@@ -31,13 +31,13 @@ end
 
 function stim = pickStimulus(stimNum)
 switch stimNum
-    case 1
-        stim = CourtshipSong;
-        stim.speaker = 2;
-        stim.maxVoltage = 0.08;
-    case 2
-        stim = PulseSong;
-        stim.speaker = 2;
+    case num2cell(1:5)
+        stimNumStart = 1;
+        modInd = stimNum-stimNumStart+1;
+        modRange = 2.^(0:4);
+        stim = AmTone;
+        stim.carrierFreqHz = 250;
+        stim.modFreqHz = modRange(modInd);
         stim.maxVoltage = 0.08;
 end
 end

@@ -14,7 +14,7 @@ while ~FS.Stop()
     trialMeta.stimNum = stimCount;
     stim = pickStimulus(trialMeta.stimNum);
     switchSpeaker(stim.speaker);
-    if count == 1 
+    if mod(stimCount,2) 
         fprintf(['\nMove probe to ',stim.probe,' antenna, then press Enter\n'])
         pause
     end
@@ -37,35 +37,35 @@ clear FS ;
         switch stimNum
             case 1
                 stim = SineWave;
-                stim.carrierFreqHz = 200;
+                stim.carrierFreqHz = 150;
                 stim.probe = 'left';
                 stim.maxVoltage = 0.02;
             case 2
                 % Saturation test
                 stim = SineWave;
-                stim.carrierFreqHz = 200;
+                stim.carrierFreqHz = 150;
                 stim.maxVoltage = 0.04;
                 stim.probe = 'left';
             case 3
                 stim = SineWave;
-                stim.carrierFreqHz = 200;
+                stim.carrierFreqHz = 150;
                 stim.probe = 'off';
                 stim.maxVoltage = 0.02;
             case 4
                 % Saturation test
                 stim = SineWave;
-                stim.carrierFreqHz = 200;
+                stim.carrierFreqHz = 150;
                 stim.maxVoltage = 0.04;
                 stim.probe = 'off';
             case 5
                 stim = SineWave;
-                stim.carrierFreqHz = 200;
+                stim.carrierFreqHz = 150;
                 stim.probe = 'right';
                 stim.maxVoltage = 0.02;
             case 6
                 % Saturation test
                 stim = SineWave;
-                stim.carrierFreqHz = 200;
+                stim.carrierFreqHz = 150;
                 stim.maxVoltage = 0.04;
                 stim.probe = 'right';
         end
