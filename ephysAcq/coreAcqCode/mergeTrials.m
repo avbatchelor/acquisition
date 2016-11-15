@@ -7,7 +7,10 @@ else
     [~,path] = getDataFileName(exptInfo);
 end
 
-%
+saveFileName = [path,'groupedData.mat'];
+if exist(saveFileName,'file')
+    return
+end
 
 %% Calculate number of trials
 cd(path)
@@ -57,5 +60,4 @@ for n = 1:numTrials;
 end
 
 %% save processed data
-saveFileName = [path,'groupedData.mat'];
 save(saveFileName,'GroupData','GroupStim','StimStruct');

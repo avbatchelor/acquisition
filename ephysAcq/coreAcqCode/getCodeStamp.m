@@ -11,6 +11,11 @@
 %%
 function stampString = getCodeStamp(callingFilePath)  
     
+    repDir = char(regexp(callingFilePath,'(?<=GitHub\\)\w*','match'));
+    repPathStem = char(regexp(callingFilePath,'.*(?=GitHub)','match'));
+    repPath = [repPathStem,'GitHub\',repDir];
+    cd(repPath)
+
     % Get the current hash
     [status, shortHash] = system('git rev-parse --short HEAD');
     shortHash = regexprep(shortHash,'\n','');
@@ -26,6 +31,5 @@ function stampString = getCodeStamp(callingFilePath)
     else
         currentFlag = '';
     end
-    repDir = char(regexp(callingFilePath,'(?<=GitHub\\)\w*','match'));
     stampString = [repDir,'-',shortHash,currentFlag];
 

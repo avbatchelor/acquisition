@@ -17,7 +17,9 @@ exptInfo.cellNum        = cellNum;
 exptInfo.cellExpNum     = cellExpNum;
 exptInfo.dNum           = datestr(now,'YYmmDD');
 exptInfo.exptStartTime  = datestr(now,'HH:MM:SS'); 
-exptInfo.stimSetNum     = stimSetNum; 
+exptInfo.stimSetNum     = stimSetNum;
+stampString = getCodeStamp(mfilename('fullpath'));
+exptInfo.codeStamp      = stampString;
 
 %% Get fly details 
 if strcmp(newFly,'y')
