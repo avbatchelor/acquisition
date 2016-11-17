@@ -1,4 +1,4 @@
-function mergeTrials(exptInfo,varargin)
+function mergeTrials(exptInfo,remerge,varargin)
 
 %% Get path
 if nargin == 0
@@ -8,7 +8,7 @@ else
 end
 
 saveFileName = [path,'groupedData.mat'];
-if exist(saveFileName,'file')
+if exist(saveFileName,'file') && remerge == 0
     return
 end
 
