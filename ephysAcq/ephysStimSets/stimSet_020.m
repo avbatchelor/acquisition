@@ -35,6 +35,7 @@ switch stimNum
         stim = PipStimulus;
         stim.speaker = 2;
         stim.maxVoltage = 0.08;
+        stim.carrierFreqHz = 150; 
     case 2
         stim = Chirp;
         stim.speaker = 2;
