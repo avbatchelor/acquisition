@@ -5,12 +5,12 @@ function stimSet_022(exptInfo,preExptData)
 %% Archive this code
 archiveExpCode(exptInfo)
 
-%% Load settings 
+%% Load settings
 ephysSettings;
 sampRate = settings.sampRate.out;
 
 %% Set up and acquire with the stimulus set
-numberOfStimuli = 5;
+numberOfStimuli = 7;
 stimRan = randperm(numberOfStimuli);
 
 count = 1;
@@ -65,7 +65,7 @@ switch stimNum
         pulseStartInd = (stim.startPadDur+stim.stimDur)*sampRate;
         pulseEndInd = (stim.startPadDur+stim.stimDur+0.25)*sampRate;
         currentCommand(pulseStartInd:pulseEndInd) = 2*(-0.0394/4);
-    case 4 % without a stimulus 
+    case 4 % without a stimulus
         stim = noStimulus;
         stim.waveDur = 14;
         % Make current command
@@ -73,14 +73,30 @@ switch stimNum
         pulseStartInd = (4)*sampRate;
         pulseEndInd = (4.25)*sampRate;
         currentCommand(pulseStartInd:pulseEndInd) = 3*(-0.0394/4);
-    case 5 % without a stimulus with larger current injection 
+    case 5 % without a stimulus with larger current injection
         stim = noStimulus;
         stim.waveDur = 14;
         % Make current command
         currentCommand = zeros(size(stim.stimulus));
         pulseStartInd = (4)*sampRate;
         pulseEndInd = (4.25)*sampRate;
-        currentCommand(pulseStartInd:pulseEndInd) = 2*(-0.0394/4);     
+        currentCommand(pulseStartInd:pulseEndInd) = 2*(-0.0394/4);
+    case 6 % +ve current injection without a stimulus
+        stim = noStimulus;
+        stim.waveDur = 14;
+        % Make current command
+        currentCommand = zeros(size(stim.stimulus));
+        pulseStartInd = (4)*sampRate;
+        pulseEndInd = (4.25)*sampRate;
+        currentCommand(pulseStartInd:pulseEndInd) = 3*(0.0394/4);
+    case 7 % without a stimulus with larger +ve current injection
+        stim = noStimulus;
+        stim.waveDur = 14;
+        % Make current command
+        currentCommand = zeros(size(stim.stimulus));
+        pulseStartInd = (4)*sampRate;
+        pulseEndInd = (4.25)*sampRate;
+        currentCommand(pulseStartInd:pulseEndInd) = 2*(0.0394/4);
 end
 end
 
