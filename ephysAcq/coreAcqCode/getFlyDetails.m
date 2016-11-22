@@ -6,7 +6,7 @@ prompt = {'Line:','Are both a2s glued to head?','Freeness of left antenna:',...
     'Is the fly a virgin?'};
 dlg_title = 'Fly Details';
 num_lines = 1;
-defaultans = {struct2cell(getpref('FlyDetails'))};
+defaultans = struct2cell(getpref('FlyDetails'))';
 out = inputdlg(prompt,dlg_title,num_lines,defaultans);
 
 FlyData.line = cellstr(out(1));
@@ -16,6 +16,9 @@ FlyData.freenessRight = cellstr(out(4));
 FlyData.prepType = cellstr(out(5));
 FlyData.notesOnDissection = cellstr(out(6));
 FlyData.virgin = cellstr(out(7));
+
+setpref('FlyDetails',{'line','a2','freenessLeft','freenessRight','prepType','notesOnDissection','virgin'},...
+    out)
 
 % Get eclosion date
 h = uicontrol('Style', 'pushbutton', 'Position', [20 150 100 70]);
