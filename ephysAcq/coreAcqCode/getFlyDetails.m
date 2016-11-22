@@ -1,13 +1,21 @@
 function FlyData = getFlyDetails(exptInfo,basename,varargin)
 
 %% Ask user for input
-FlyData.line = input('Line: ','s');
-FlyData.a2 = input('Are both a2s glued to head?','s');
-FlyData.freenessLeft = input('Freeness of left antenna: ','s');
-FlyData.freenessRight = input('Freeness of right antenna: ','s');
-FlyData.prepType = input('Prep type: ','s');
-FlyData.notesOnDissection = input('Notes on dissection: ','s');
-FlyData.virgin = input('Is the fly a virgin?','s');
+prompt = {'Line:','Are both a2s glued to head?','Freeness of left antenna:',...
+    'Freeness of right antenna: ','Prep type: ','Notes on dissection: ',...
+    'Is the fly a virgin?'};
+dlg_title = 'Fly Details';
+num_lines = 1;
+defaultans = {struct2cell(getpref('FlyDetails'))};
+out = inputdlg(prompt,dlg_title,num_lines,defaultans);
+
+FlyData.line = cellstr(out(1));
+FlyData.a2 = cellstr(out(2));
+FlyData.freenessLeft = cellstr(out(3));
+FlyData.freenessRight = cellstr(out(4));
+FlyData.prepType = cellstr(out(5));
+FlyData.notesOnDissection = cellstr(out(6));
+FlyData.virgin = cellstr(out(7));
 
 % Get eclosion date
 h = uicontrol('Style', 'pushbutton', 'Position', [20 150 100 70]);
