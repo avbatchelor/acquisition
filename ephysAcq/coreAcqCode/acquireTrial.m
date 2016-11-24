@@ -7,7 +7,7 @@ daqreset;
 trialMeta.trialStartTime = datestr(now,'HH:MM:SS'); 
 
 %% Code stamp
-exptInfo.codeStamp      = getCodeStamp(1);
+exptInfo.codeStamp      = getCodeStamp(mfilename('fullpath'));
 
 %% Create stimulus if needed  
 if ~exist('pulseType','var')  

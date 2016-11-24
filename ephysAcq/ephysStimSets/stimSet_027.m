@@ -1,6 +1,9 @@
 function stimSet_027(exptInfo,preExptData)
 
-% Stim set for adding blockers
+% Stim set for adding blockers with speaker stim
+
+%% Speaker or piezo 
+exptInfo.stimType = s;
 
 %% Archive this code
 archiveExpCode(exptInfo)

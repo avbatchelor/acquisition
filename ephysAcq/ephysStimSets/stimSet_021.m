@@ -2,6 +2,9 @@ function stimSet_021(exptInfo,preExptData)
 
 % Repeat courtship song and pulse song through middle speaker
 
+%% Speaker or piezo 
+exptInfo.stimType = s;
+
 %% Archive this code
 archiveExpCode(exptInfo)
 

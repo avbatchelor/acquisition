@@ -3,6 +3,9 @@ function stimSet_024(exptInfo,preExptData)
 % Play a range of pure tones through middle speaker to test tuning through
 % speaker
 
+%% Speaker or piezo 
+exptInfo.stimType = s;
+
 %% Archive this code
 archiveExpCode(exptInfo)
 
@@ -36,7 +39,7 @@ switch stimNum
         stimNumStart = 1;
         carrierInd = stimNum-stimNumStart+1;
         stim = SineWave;
-        carrierRange = 230+(0:8).*5;
+        carrierRange = 100+(0:8).*15;
         stim.carrierFreqHz = carrierRange(carrierInd);
         stim.maxVoltage = 0.08;
 end

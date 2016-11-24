@@ -2,6 +2,9 @@ function stimSet_022(exptInfo,preExptData)
 
 % Pure 250Hz tones with post-stimulus hyperpolarising currents
 
+%% Speaker or piezo 
+exptInfo.stimType = s;
+
 %% Archive this code
 archiveExpCode(exptInfo)
 
@@ -38,7 +41,7 @@ switch stimNum
     case 1 % without post-stimulus current injection
         % Make stimulus
         stim = SineWave;
-        stim.carrierFreqHz = 250;
+        stim.carrierFreqHz = 200;
         stim.maxVoltage = 0.08;
         stim.endPadDur = 10;
         % Make current command
@@ -46,7 +49,7 @@ switch stimNum
     case 2 % with smaller post-stimulus current injection
         % Make stimulus
         stim = SineWave;
-        stim.carrierFreqHz = 250;
+        stim.carrierFreqHz = 200;
         stim.maxVoltage = 0.08;
         stim.endPadDur = 10;
         % Make current command
@@ -57,7 +60,7 @@ switch stimNum
     case 3 % with larger post-stimulus current injection
         % Make stimulus
         stim = SineWave;
-        stim.carrierFreqHz = 250;
+        stim.carrierFreqHz = 200;
         stim.maxVoltage = 0.08;
         stim.endPadDur = 10;
         % Make current command

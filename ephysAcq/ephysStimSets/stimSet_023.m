@@ -2,6 +2,9 @@ function stimSet_023(exptInfo,preExptData)
 
 % Play AM at 250Hz carrier through middle speaker
 
+%% Speaker or piezo 
+exptInfo.stimType = s;
+
 %% Archive this code
 archiveExpCode(exptInfo)
 

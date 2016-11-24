@@ -2,6 +2,9 @@ function stimSet_020(exptInfo,preExptData)
 
 % Play a range of stimuli refined for vPN1 neurons (pips, chirps, courtship/pulse song, pure tones and AM tones) through middle speaker
 
+%% Speaker or piezo 
+exptInfo.stimType = s;
+
 %% Archive this code
 archiveExpCode(exptInfo)
 

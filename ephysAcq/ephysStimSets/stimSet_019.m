@@ -2,6 +2,9 @@ function stimSet_019(exptInfo,preExptData)
 
 % Probe experiment with 200Hz pure tone plus saturation test
 
+%% Speaker or piezo 
+exptInfo.stimType = s;
+
 %% Archive this code
 archiveExpCode(exptInfo)
 

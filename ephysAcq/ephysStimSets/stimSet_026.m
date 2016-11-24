@@ -1,12 +1,15 @@
 function stimSet_026(exptInfo,preExptData)
 
-% Play a range of stimuli (pips, chirps, courtship/pulse song, clicks, pure tones and AM tones) through 15um piezo (max voltage is 4)
+% Play a range of stimuli (pips, chirps, courtship/pulse song, clicks, pure tones and AM tones, steps and tones) through 15um piezo (max voltage is 4)
+
+%% Speaker or piezo 
+exptInfo.stimType = p;
 
 %% Archive this code
 archiveExpCode(exptInfo)
 
 %% Set up and acquire with the stimulus set
-numberOfStimuli = 27;
+numberOfStimuli = 25;
 voltage = 1;
 stimRan = randperm(numberOfStimuli);
 
@@ -62,42 +65,42 @@ switch stimNum
         stim = SquareWave;
         stim.speaker = 2;
         stim.maxVoltage = voltage; 
-    case num2cell(7:16)
+    case num2cell(7:14)
         freqRange = (1:8).*50;
         stimNumStart = 7-1;
         freqNum = stimNum - stimNumStart;
         stim = SineWave;
         stim.carrierFreqHz = freqRange(freqNum);
         stim.maxVoltage = voltage; 
-    case num2cell(17:21)
+    case num2cell(15:19)
         modFreqRange = 2.^(0:4);
-        stimNumStart = 17-1;
+        stimNumStart = 15-1;
         modFreqNum = stimNum - stimNumStart;
         stim = AmTone;
         stim.carrierFreqHz = 300;
         stim.modFreqHz = modFreqRange(modFreqNum);
         stim.maxVoltage = voltage;
-    case 22
+    case 20
         stim = StepPlusSine; 
         stim.stepDirection = 'forward';
         stim.carrierFreqHz = 150;
-    case 23 
+    case 21
         stim = StepPlusSine; 
         stim.stepDirection = 'backward';
         stim.carrierFreqHz = 150;
-    case 24 
+    case 22 
         stim = StepPlusSine; 
         stim.stepDirection = 'forward';
         stim.carrierFreqHz = 300;
-    case 25
+    case 23
         stim = StepPlusSine; 
         stim.stepDirection = 'backward';
         stim.carrierFreqHz = 300;
-    case 26
+    case 24
         stim = StepPlusSine; 
         stim.stepDirection = 'forward';
         stim.carrierFreqHz = 100;
-    case 27
+    case 25
         stim = StepPlusSine; 
         stim.stepDirection = 'backward';
         stim.carrierFreqHz = 100;

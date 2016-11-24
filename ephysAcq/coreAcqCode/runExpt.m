@@ -7,7 +7,6 @@ newCell = input('New cell? ','s');
 fprintf(['Fly Number = ',num2str(flyNum),'\n'])
 fprintf(['Cell Number = ',num2str(cellNum),'\n'])
 fprintf(['Cell Experiment Number = ',num2str(cellExpNum),'\n'])
-exptInfo.stimType = input('Are you using piezo(p), speaker(s) or neither(n)?','s');
 
 %% Set meta data
 exptInfo.prefixCode     = prefixCode;
@@ -36,16 +35,18 @@ end
 %input('Camera recording started? ','s');
 
 %% Run pre-expt routines (measure pipette resistance etc.)
-contAns = input('Run preExptRoutine? ','s');
-if strcmp(contAns,'y')
-    [~, path, ~, ~] = getDataFileName(exptInfo);
-    path = [path,'\preExptTrials'];
-    if ~isdir(path)
-        mkdir(path);
+if strcmp(newFly,'y')
+    contAns = input('Run preExptRoutine? ','s');
+    if strcmp(contAns,'y')
+        [~, path, ~, ~] = getDataFileName(exptInfo);
+        path = [path,'\preExptTrials'];
+        if ~isdir(path)
+            mkdir(path);
+        end
+        preExptData = preExptRoutine(exptInfo);
+    else
+        preExptData = [];
     end
-    preExptData = preExptRoutine(exptInfo);
-else
-    preExptData = [];
 end
 
 %% Run experiment with stimulus
