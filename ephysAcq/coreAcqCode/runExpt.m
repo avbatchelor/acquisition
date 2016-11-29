@@ -35,7 +35,7 @@ end
 %input('Camera recording started? ','s');
 
 %% Run pre-expt routines (measure pipette resistance etc.)
-if strcmp(newFly,'y')
+if strcmp(newCell,'y')
     contAns = input('Run preExptRoutine? ','s');
     if strcmp(contAns,'y')
         [~, path, ~, ~] = getDataFileName(exptInfo);
