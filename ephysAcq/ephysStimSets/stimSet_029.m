@@ -10,7 +10,6 @@ archiveExpCode(exptInfo)
 numberOfStimuli = 2;
 stimRan = randperm(numberOfStimuli);
 
-pause on 
 count = 1;
 stimCount = 1; 
 FS = stoploop('Stop Experiment');
@@ -22,7 +21,7 @@ while ~FS.Stop()
         fprintf(['\nMake sure vial contains ',stim.odor])
         pause
     end
-    acquireTrial('i',stim,exptInfo,preExptData,trialMeta);
+    acquireTrialWithOdor('i',stim,exptInfo,preExptData,trialMeta);
     if count == 3
         count = 1;
         stimCount = stimCount + 1; 
