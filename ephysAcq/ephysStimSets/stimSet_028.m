@@ -3,7 +3,7 @@ function stimSet_028(exptInfo,preExptData)
 % Depolarising current injections 
 
 %% Speaker or piezo 
-exptInfo.stimType = n;
+exptInfo.stimType = 'n';
 
 %% Archive this code
 archiveExpCode(exptInfo)
@@ -45,7 +45,7 @@ switch stimNum
         currentCommand = zeros(size(stim.stimulus));
         pulseStartInd = (4)*sampRate;
         pulseEndInd = (4.25)*sampRate;
-        currentCommand(pulseStartInd:pulseEndInd) = 4*(0.0394/4);
+        currentCommand(pulseStartInd:pulseEndInd) = -4*(0.0394/4);
     case 2 % without a stimulus with larger +ve current injection
         stim = noStimulus;
         stim.waveDur = 14;
@@ -53,7 +53,7 @@ switch stimNum
         currentCommand = zeros(size(stim.stimulus));
         pulseStartInd = (4)*sampRate;
         pulseEndInd = (4.25)*sampRate;
-        currentCommand(pulseStartInd:pulseEndInd) = 2*(0.0394/4);
+        currentCommand(pulseStartInd:pulseEndInd) = -2*(0.0394/4);
 end
 end
 

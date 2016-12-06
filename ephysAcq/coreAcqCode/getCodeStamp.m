@@ -1,7 +1,9 @@
-%%
 %   getCodeStamp(callingFilePath)
+%   JSB
+%   AVB 2016
 %       
-%       To find the callingFilePath run: 
+%       To get the stamp string just insert this line into the code that
+%       you want the stamp string of. 
 %            stampString = getCodeStamp(mfilename('fullpath'));
 %
 %       Returns a string with the name and short hash of the git
@@ -11,6 +13,7 @@
 %%
 function stampString = getCodeStamp(callingFilePath)  
     
+    % Get the name and path of current git repository
     repDir = char(regexp(callingFilePath,'(?<=GitHub\\)\w*','match'));
     repPathStem = char(regexp(callingFilePath,'.*(?=GitHub)','match'));
     repPath = [repPathStem,'GitHub\',repDir];

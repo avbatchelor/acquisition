@@ -47,6 +47,8 @@ if strcmp(newCell,'y')
     else
         preExptData = [];
     end
+else 
+    preExptData = [];
 end
 
 %% Run experiment with stimulus
