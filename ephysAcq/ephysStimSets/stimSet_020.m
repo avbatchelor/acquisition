@@ -14,7 +14,7 @@ stimRan = randperm(numberOfStimuli);
 
 count = 1;
 repeat = 1;
-while repeat < 10
+while repeat < 3
     trialMeta.stimNum = stimRan(count);
     fprintf(['\nStimNum = ',num2str(trialMeta.stimNum)])
     fprintf(['\nRepeatNum = ',num2str(repeat)])

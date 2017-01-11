@@ -111,7 +111,7 @@ if nargin ~= 0 && nargin ~= 1
     % Get filename and save trial data
     [fileName,path,trialMeta.trialNum] = getDataFileName(exptInfo);
     fprintf(['\nTrial Number ', num2str(trialMeta.trialNum)])
-    fprintf(['\nStimNum = ',num2str(trialMeta.stimNum)])
+%     fprintf(['\nStimNum = ',num2str(trialMeta.stimNum)])
     if ~isdir(path)
         mkdir(path);
     end

@@ -37,7 +37,7 @@ flyNum      = exptInfo.flyNum;
 eNum = num2str(expNum,'%03d');
 fNum = num2str(flyNum,'%03d');
 
-dataDirectory = getpref('scimSavePrefs','dataDirectory');
+ephysSettings; 
 path = [dataDirectory,prefixCode,'\expNum',eNum,...
         '\flyNum',fNum];
 

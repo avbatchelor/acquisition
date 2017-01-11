@@ -41,7 +41,7 @@ switch stimNum
     case 1 % without post-stimulus current injection
         % Make stimulus
         stim = SineWave;
-        stim.carrierFreqHz = 100;
+        stim.carrierFreqHz = 160;
         stim.maxVoltage = 0.5;
         stim.endPadDur = 10;
         % Make current command
@@ -49,7 +49,7 @@ switch stimNum
     case 2 % with smaller post-stimulus current injection
         % Make stimulus
         stim = SineWave;
-        stim.carrierFreqHz = 100;
+        stim.carrierFreqHz = 160;
         stim.maxVoltage = 0.5;
         stim.endPadDur = 10;
         % Make current command
@@ -60,7 +60,7 @@ switch stimNum
     case 3 % with larger post-stimulus current injection
         % Make stimulus
         stim = SineWave;
-        stim.carrierFreqHz = 100;
+        stim.carrierFreqHz = 160;
         stim.maxVoltage = 0.5;
         stim.endPadDur = 10;
         % Make current command
