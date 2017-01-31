@@ -9,8 +9,10 @@ exptInfo.stimType = 's';
 archiveExpCode(exptInfo)
 
 %% Hard coded parameters
-voltage = [0.04,0.08,0.16];
-carrierRange = 50:50:450;
+% voltage = [0.04,0.08,0.16];
+% carrierRange = 50:50:450;
+voltage = [0.16,0.32];
+carrierRange = 200:50:450;
 numberOfStimuli = length(voltage)*length(carrierRange);
 numFreq = length(carrierRange);
 

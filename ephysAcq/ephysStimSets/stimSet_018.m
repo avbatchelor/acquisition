@@ -18,7 +18,7 @@ while repeat < 100
     fprintf(['\nRepeatNum = ',num2str(repeat)])
     stim = pickStimulus(trialMeta.stimNum);
     switchSpeaker(stim.speaker);
-    acquireTrialWithCamera('i',stim,exptInfo,preExptData,trialMeta);
+    acquireTrial('i',stim,exptInfo,preExptData,trialMeta);
     if count == numberOfStimuli
         count = 1;
         stimRan = randperm(numberOfStimuli);

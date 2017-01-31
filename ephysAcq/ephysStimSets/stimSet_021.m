@@ -9,7 +9,7 @@ exptInfo.stimType = 's';
 archiveExpCode(exptInfo)
 
 %% Set up and acquire with the stimulus set
-voltage = [0.04,0.08,0.16];
+voltage = [0.16,0.32,0.64];
 numberOfStimuli = 2*length(voltage);
 stimRan = randperm(numberOfStimuli);
 
