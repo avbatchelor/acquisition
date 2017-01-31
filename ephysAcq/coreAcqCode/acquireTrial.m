@@ -51,6 +51,7 @@ sOut.Rate = stim.sampleRate;
 % Analog Channels / names for documentation
 sOut.addAnalogOutputChannel(devID,0:1,'Voltage');
 sOut.Rate = stim.sampleRate;
+outputData = [settings.pulse.Command,stim.stimulus];
 
 % Add trigger
 sOut.addTriggerConnection('External','Dev1/PFI3','StartTrigger');
@@ -70,7 +71,7 @@ end
 sIn.addTriggerConnection('Dev1/PFI1','External','StartTrigger');
 
 %% Run trials
-sOut.queueOutputData([settings.pulse.Command,stim.stimulus]);
+sOut.queueOutputData(outputData);
 sOut.startBackground; % Start the session that receives start trigger first
 rawData = sIn.startForeground;
 
