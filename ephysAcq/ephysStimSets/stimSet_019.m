@@ -3,7 +3,7 @@ function stimSet_019(exptInfo,preExptData)
 % Probe experiment with 200Hz pure tone plus saturation test
 
 %% Speaker or piezo 
-exptInfo.stimType = s;
+exptInfo.stimType = 's';
 
 %% Archive this code
 archiveExpCode(exptInfo)
@@ -17,7 +17,7 @@ while ~FS.Stop()
     trialMeta.stimNum = stimCount;
     stim = pickStimulus(trialMeta.stimNum);
     switchSpeaker(stim.speaker);
-    if mod(stimCount,2) 
+    if mod(stimCount,2) && count == 1
         fprintf(['\nMove probe to ',stim.probe,' antenna, then press Enter\n'])
         pause
     end
@@ -40,36 +40,36 @@ clear FS ;
         switch stimNum
             case 1
                 stim = SineWave;
-                stim.carrierFreqHz = 150;
+                stim.carrierFreqHz = 240;
                 stim.probe = 'left';
-                stim.maxVoltage = 0.02;
+                stim.maxVoltage = 0.16;
             case 2
                 % Saturation test
                 stim = SineWave;
-                stim.carrierFreqHz = 150;
-                stim.maxVoltage = 0.04;
+                stim.carrierFreqHz = 240;
+                stim.maxVoltage = 0.32;
                 stim.probe = 'left';
             case 3
                 stim = SineWave;
-                stim.carrierFreqHz = 150;
+                stim.carrierFreqHz = 240;
                 stim.probe = 'off';
-                stim.maxVoltage = 0.02;
+                stim.maxVoltage = 0.16;
             case 4
                 % Saturation test
                 stim = SineWave;
-                stim.carrierFreqHz = 150;
-                stim.maxVoltage = 0.04;
+                stim.carrierFreqHz = 240;
+                stim.maxVoltage = 0.32;
                 stim.probe = 'off';
             case 5
                 stim = SineWave;
-                stim.carrierFreqHz = 150;
+                stim.carrierFreqHz = 240;
                 stim.probe = 'right';
-                stim.maxVoltage = 0.02;
+                stim.maxVoltage = 0.16;
             case 6
                 % Saturation test
                 stim = SineWave;
-                stim.carrierFreqHz = 150;
-                stim.maxVoltage = 0.04;
+                stim.carrierFreqHz = 240;
+                stim.maxVoltage = 0.32;
                 stim.probe = 'right';
         end
     end

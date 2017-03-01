@@ -10,7 +10,7 @@ close all
 %% Ask user for input
 prompt = {'Line:','Are both a2s glued to head?','Freeness of left antenna:',...
     'Freeness of right antenna: ','Prep type: ','Notes on dissection: ',...
-    'Is the fly a virgin?','Target hemisphere (Fly''s ...):','Notes on eclosion date','Male or female?'};
+    'Is the fly a virgin?','Target hemisphere (Fly''s ...):','Notes on eclosion date','Male or female?','Leg state'};
 dlg_title = 'Fly Details';
 num_lines = 1;
 defaultans = struct2cell(getpref('FlyDetails'))';
@@ -24,8 +24,11 @@ FlyData.prepType = cellstr(out(5));
 FlyData.notesOnDissection = cellstr(out(6));
 FlyData.virgin = cellstr(out(7));
 FlyData.hemisphere = cellstr(out(8));
+FlyData.notesOnEclosionDate = cellstr(out(9));
+FlyData.sex = cellstr(out(10));
+FlyData.legState = cellstr(out(11));
 
-setpref('FlyDetails',{'line','a2','freenessLeft','freenessRight','prepType','notesOnDissection','virgin','hemisphere','eclosion','gender'},...
+setpref('FlyDetails',{'line','a2','freenessLeft','freenessRight','prepType','notesOnDissection','virgin','hemisphere','eclosion','gender','legState'},...
     out)
 
 

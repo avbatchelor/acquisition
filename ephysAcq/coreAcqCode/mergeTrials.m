@@ -19,7 +19,7 @@ numTrials = length(fileNames);
 stimSequence = [];
 
 %%  Group data
-for n = 1:numTrials;
+for n = 1:numTrials
     % Load file
     clear data Stim exptInfo trialMeta
     load([path,'\',fileNames(n).name]);
@@ -56,6 +56,11 @@ for n = 1:numTrials;
         GroupData(stimNum).description = Stim.description;
     else 
         GroupData(stimNum).description = 'no stim description';
+    end
+    if isfield(Stim,'odor')
+        GroupData(stimNum).odor = Stim.odor;
+    else 
+        GroupData(stimNum).odor = 'no odor description';
     end
 end
 

@@ -21,14 +21,14 @@ while ~FS.Stop()
         fprintf(['\nMake sure vial contains ',stim.odor])
         pause
     end
-    acquireTrialWithOdor('i',stim,exptInfo,preExptData,trialMeta);
+    acquireTrial('i',stim,exptInfo,preExptData,trialMeta);
     if count == 3
         count = 1;
         stimCount = stimCount + 1; 
     else
         count = count+1;
     end
-    if stimCount == 3; 
+    if stimCount == 3
         stimCount = 1; 
     end
 end
@@ -39,6 +39,7 @@ function stim = pickStimulus(stimNum)
 switch stimNum
     case 1
         stim = WindStimulus;
+        stim.odor = 'no odor';
     case 2 
         stim = WindStimulus; 
         stim.odor = 'CVA';
