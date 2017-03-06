@@ -3,7 +3,8 @@
 %% Parameters
 % Data folder 
 % dataDirectory = 'C:\Users\Alex\My Documents\Data\ephysData\';
-dataDirectory = 'D:\Data\ephysData\';
+dataDirectory = 'D:\DataD\ephysData\';
+rawVidDir = 'D:\rawVideo\';
 
 % Device
 settings.devID = 'Dev1';

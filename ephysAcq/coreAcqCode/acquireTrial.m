@@ -32,12 +32,15 @@ switch pulseType
         settings.pulse.Amp = -5/6;
 end   
 
+pulseStart = round(length(stim.stimulus)/3);
+pulseEnd = pulseStart*2;
+
 if ~exist('currentCommand','var')
     settings.pulse.Command = zeros(size(stim.stimulus));
-    settings.pulse.Command(settings.pulse.Start:settings.pulse.End) = settings.pulse.Amp;
+    settings.pulse.Command(pulseStart:pulseEnd) = settings.pulse.Amp;
 else 
     settings.pulse.Command = currentCommand; 
-    settings.pulse.Command(settings.pulse.Start:settings.pulse.End) = settings.pulse.Amp;
+    settings.pulse.Command(pulseStart:pulseEnd) = settings.pulse.Amp;
 end
 
 %% Configure daq
@@ -60,6 +63,7 @@ sOut.addTriggerConnection('External','Dev1/PFI3','StartTrigger');
 %% Configure input session
 sIn = daq.createSession('ni');
 sIn.Rate = settings.sampRate.in;
+trialMeta.acqSampleRate = sIn.Rate;
 sIn.DurationInSeconds = stim.totalDur;
 
 aI = sIn.addAnalogInputChannel(devID,settings.bob.inChannelsUsed,'Voltage');
@@ -135,9 +139,6 @@ sOut.stop;
 sIn.stop;
 
 %% Plot data
-plotData(stim,settings,data)
-
-
-
+plotData(stim,data,trialMeta)
 
 end
