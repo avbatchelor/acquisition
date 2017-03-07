@@ -8,6 +8,9 @@ exptInfo.stimType = 's';
 %% Archive this code
 archiveExpCode(exptInfo)
 
+%% Run current injection trial 
+currentInjectionTrial(exptInfo,preExptData)
+
 %% Set up and acquire with the stimulus set
 numberOfStimuli = 18;
 stimRan = randperm(numberOfStimuli);
@@ -20,7 +23,7 @@ while repeat < 3
     fprintf(['\nRepeatNum = ',num2str(repeat)])
     stim = pickStimulus(trialMeta.stimNum);
     switchSpeaker(stim.speaker);
-    acquireTrial('i',stim,exptInfo,preExptData,trialMeta);
+    acquireTrialWithCamera('none',stim,exptInfo,preExptData,trialMeta);
     if count == numberOfStimuli
         count = 1;
         stimRan = randperm(numberOfStimuli);
@@ -29,6 +32,9 @@ while repeat < 3
         count = count+1;
     end
 end
+
+%% Run current injection trial 
+currentInjectionTrial(exptInfo,preExptData)
 
 end
 
