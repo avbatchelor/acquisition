@@ -51,7 +51,7 @@ switch stimNum
         stim.ipi = 0.035; 
         stim.odor = 'filter paper only';
         stim.pipDur = 3*(1/stim.carrierFreqHz);
-        stim.envelopeRamp = 1; 
+        stim.envelopeRamp = 2; 
     case 2
         stim = PipStimulus;
         stim.speaker = 2;
@@ -59,6 +59,8 @@ switch stimNum
         stim.carrierFreqHz = 220; 
         stim.ipi = 0.035; 
         stim.odor = 'filter paper plus CVA'; 
+        stim.pipDur = 3*(1/stim.carrierFreqHz);
+        stim.envelopeRamp = 2; 
 end
 end
 
