@@ -1,5 +1,20 @@
 function [data,settings,stim,trialMeta,exptInfo] = acquireTrialWithCamera(pulseType,stim,exptInfo,preExptData,trialMeta,varargin)
 
+%% Get trialNum and other details 
+[fileName,path,trialMeta.trialNum] = getDataFileName(exptInfo);
+
+%% Load settings    
+ephysSettings; 
+
+%% Make sure camera is setup 
+if trialMeta.trialNum == 1
+    clipboard('copy',rawVidDir)
+    disp('Is camera recording on?')
+    pause
+    delete([rawVidDir,'\*'])
+end 
+
+%% Start acquiring trial 
 fprintf('\n*********** Acquiring Trial ***********') 
 
 daqreset;
@@ -8,7 +23,7 @@ daqreset;
 trialMeta.trialStartTime = datestr(now,'HH:MM:SS'); 
 
 %% Code stamp
-exptInfo.codeStamp      = getCodeStamp(1);
+exptInfo.codeStamp      = getCodeStamp(mfilename('fullpath'));
 
 %% Create stimulus if needed  
 if ~exist('pulseType','var')  
@@ -20,9 +35,6 @@ if ~exist('stim','var')
     stim.waveDur = 0; 
 end
 
-
-%% Load settings    
-ephysSettings; 
      
 %% Generate pulse
 switch pulseType
@@ -35,7 +47,9 @@ switch pulseType
 end   
 
 settings.pulse.Command = zeros(size(stim.stimulus));
-settings.pulse.Command(settings.pulse.Start:settings.pulse.End) = settings.pulse.Amp;
+pulseStart = round(length(stim.stimulus)/3);
+pulseEnd = pulseStart*2;
+settings.pulse.Command(pulseStart:pulseEnd) = settings.pulse.Amp;
 
 
 %% Create camera trigger
@@ -51,6 +65,7 @@ devID = 'Dev1';
 %% Configure ouput session
 s = daq.createSession('ni');
 s.Rate = stim.sampleRate;
+trialMeta.acqSampleRate = s.Rate; 
 s.DurationInSeconds = stim.totalDur;
 
 % Analog Channels / names for documentation
@@ -74,7 +89,7 @@ for i = 1:length(settings.bob.inChannelsUsed)
 end
 
 % Add digital input for camera strobe 
-s.addCounterInputChannel('Dev1', 'ctr0', 'EdgeCount');
+%s.addCounterInputChannel('Dev1', 'ctr0', 'EdgeCount');
 
 %% Run trials
 s.queueOutputData(outputData);
@@ -92,7 +107,7 @@ data.voltage = settings.voltage.softGain .* rawData(:,settings.bob.voltCh+1);
 data.current = settings.current.softGain .* rawData(:,settings.bob.currCh+1);
 data.speakerCommand = rawData(:,settings.bob.speakerCommandCh+1);
 data.piezoSG = rawData(:,settings.bob.piezoSGReading+1);
-data.cameraFrameRecord = rawData(:,settings.bob.piezoSGReading+2);
+%data.cameraFrameRecord = rawData(:,settings.bob.piezoSGReading+2);
 
 %% Process scaled data
 % Scaled output
@@ -117,7 +132,6 @@ end
 %% Only if saving data
 if nargin ~= 0 && nargin ~= 1
     % Get filename and save trial data
-    [fileName,path,trialMeta.trialNum] = getDataFileName(exptInfo);
     fprintf(['\nTrial Number ', num2str(trialMeta.trialNum)])
     fprintf(['\nStimNum = ',num2str(trialMeta.stimNum)])
     if ~isdir(path)
@@ -142,19 +156,15 @@ if ~isdir(groupedVideoPath)
     mkdir(groupedVideoPath);
 end
 try 
-    movefile([path,'rawVideo\*'],groupedVideoPath,'f');
+    movefile([rawVidDir,'*'],groupedVideoPath,'f');
 catch
-    disp('Recording not on')
+    error('Recording not on')
 end
 
 %% Close daq objects
 s.stop;
-s.stop;
 
 %% Plot data
-plotData(stim,settings,data)
-
-
-
+plotData(stim,data,trialMeta)
 
 end

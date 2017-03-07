@@ -2,7 +2,9 @@
 
 %% Parameters
 % Data folder 
-dataDirectory = 'C:\Users\Alex\My Documents\Data\ephysData\';
+% dataDirectory = 'C:\Users\Alex\My Documents\Data\ephysData\';
+dataDirectory = 'D:\DataD\ephysData\';
+rawVidDir = 'D:\rawVideo\';
 
 % Device
 settings.devID = 'Dev1';
@@ -15,12 +17,12 @@ settings.sampRate.out   = 40E3;
 settings.camRate = 30; 
 
 % Break out box 
-settings.bob.currCh = 0;
+settings.bob.currCh = 5;
 settings.bob.voltCh = 1;
 settings.bob.scalCh = 2;
 settings.bob.gainCh = 3;
 settings.bob.freqCh = 4;
-settings.bob.modeCh = 5;
+settings.bob.modeCh = 0;
 settings.bob.speakerCommandCh = 6;
 settings.bob.piezoSGReading = 7;
 settings.bob.aiType = 'SingleEnded';

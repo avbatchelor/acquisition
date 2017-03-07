@@ -32,12 +32,15 @@ switch pulseType
         settings.pulse.Amp = -5/6;
 end   
 
+pulseStart = round(length(stim.stimulus)/3);
+pulseEnd = pulseStart*2;
+
 if ~exist('currentCommand','var')
     settings.pulse.Command = zeros(size(stim.stimulus));
-    settings.pulse.Command(settings.pulse.Start:settings.pulse.End) = settings.pulse.Amp;
+    settings.pulse.Command(pulseStart:pulseEnd) = settings.pulse.Amp;
 else 
     settings.pulse.Command = currentCommand; 
-    settings.pulse.Command(settings.pulse.Start:settings.pulse.End) = settings.pulse.Amp;
+    settings.pulse.Command(pulseStart:pulseEnd) = settings.pulse.Amp;
 end
 
 %% Configure daq
@@ -51,6 +54,7 @@ sOut.Rate = stim.sampleRate;
 % Analog Channels / names for documentation
 sOut.addAnalogOutputChannel(devID,0:1,'Voltage');
 sOut.Rate = stim.sampleRate;
+outputData = [settings.pulse.Command,stim.stimulus];
 
 % Add trigger
 sOut.addTriggerConnection('External','Dev1/PFI3','StartTrigger');
@@ -59,6 +63,7 @@ sOut.addTriggerConnection('External','Dev1/PFI3','StartTrigger');
 %% Configure input session
 sIn = daq.createSession('ni');
 sIn.Rate = settings.sampRate.in;
+trialMeta.acqSampleRate = sIn.Rate;
 sIn.DurationInSeconds = stim.totalDur;
 
 aI = sIn.addAnalogInputChannel(devID,settings.bob.inChannelsUsed,'Voltage');
@@ -70,7 +75,7 @@ end
 sIn.addTriggerConnection('Dev1/PFI1','External','StartTrigger');
 
 %% Run trials
-sOut.queueOutputData([settings.pulse.Command,stim.stimulus]);
+sOut.queueOutputData(outputData);
 sOut.startBackground; % Start the session that receives start trigger first
 rawData = sIn.startForeground;
 
@@ -111,7 +116,7 @@ if nargin ~= 0 && nargin ~= 1
     % Get filename and save trial data
     [fileName,path,trialMeta.trialNum] = getDataFileName(exptInfo);
     fprintf(['\nTrial Number ', num2str(trialMeta.trialNum)])
-    fprintf(['\nStimNum = ',num2str(trialMeta.stimNum)])
+%     fprintf(['\nStimNum = ',num2str(trialMeta.stimNum)])
     if ~isdir(path)
         mkdir(path);
     end
@@ -134,9 +139,6 @@ sOut.stop;
 sIn.stop;
 
 %% Plot data
-plotData(stim,settings,data)
-
-
-
+plotData(stim,data,trialMeta)
 
 end

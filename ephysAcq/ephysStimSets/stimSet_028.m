@@ -44,16 +44,16 @@ switch stimNum
         % Make current command
         currentCommand = zeros(size(stim.stimulus));
         pulseStartInd = (4)*sampRate;
-        pulseEndInd = (4.25)*sampRate;
-        currentCommand(pulseStartInd:pulseEndInd) = -4*(0.0394/4);
+        pulseEndInd = (5)*sampRate;
+        currentCommand(pulseStartInd:pulseEndInd) = 8*(0.0394/4);
     case 2 % without a stimulus with larger +ve current injection
         stim = noStimulus;
         stim.waveDur = 14;
         % Make current command
         currentCommand = zeros(size(stim.stimulus));
         pulseStartInd = (4)*sampRate;
-        pulseEndInd = (4.25)*sampRate;
-        currentCommand(pulseStartInd:pulseEndInd) = -2*(0.0394/4);
+        pulseEndInd = (5)*sampRate;
+        currentCommand(pulseStartInd:pulseEndInd) = 4*(0.0394/4);
 end
 end
 
