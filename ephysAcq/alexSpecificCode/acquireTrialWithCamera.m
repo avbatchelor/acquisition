@@ -151,7 +151,7 @@ if nargin ~= 0 && nargin ~= 1
 end
 
 %% Copy movies 
-groupedVideoPath = [path,'\groupedVideos\','trial_',num2str(trialMeta.trialNum),'\'];
+groupedVideoPath = [path,'\groupedVideos\','trial',num2str(trialMeta.trialNum,'%03d'),'\'];
 if ~isdir(groupedVideoPath)
     mkdir(groupedVideoPath);
 end
