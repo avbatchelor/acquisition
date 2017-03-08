@@ -1,3 +1,5 @@
+% Make sure to adjust gain of camera before starting 
+
 %% Test frequency tuning 
 runExpt('40F04',1,20)
 

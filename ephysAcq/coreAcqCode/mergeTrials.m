@@ -4,10 +4,13 @@ function mergeTrials(exptInfo,remerge,varargin)
 if nargin == 0
     path = uigetdir;
 else
-    [~,path] = getDataFileName(exptInfo);
+    [~,path,~] = getDataFileName(exptInfo);
 end
 
-saveFileName = [path,'groupedData.mat'];
+pPath = getProcessedDataFileName(exptInfo);
+mkdir(pPath);
+
+[saveFileName] = getFileNames(exptInfo);
 if exist(saveFileName,'file') && remerge == 0
     return
 end
