@@ -79,7 +79,7 @@ else
     s.addAnalogOutputChannel(devID,0:1,'Voltage'); % Speaker/piezo command & current injection command
     % Add digital output for cameral channel 
     s.addDigitalChannel('Dev1','port0/line3','OutputOnly');
-    outputData = [stim.stimulus,settings.pulse.Command,camTrig];
+    outputData = [settings.pulse.Command,stim.stimulus,camTrig];
 end
 
 % Add analog input channels 
