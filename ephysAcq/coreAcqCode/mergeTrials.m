@@ -37,6 +37,9 @@ for n = 1:numTrials
     
     % Create stimulus matrix
     stimNum = trialMeta.stimNum;
+    if stimNum == 0 % Ignore stimuli that I gave stimNum = 0 
+            continue 
+    end
     if any(stimSequence == stimNum)
     else
         GroupStim(stimNum).stimTime = [1/Stim.sampleRate:1/Stim.sampleRate:Stim.totalDur]';
