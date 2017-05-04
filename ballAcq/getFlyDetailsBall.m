@@ -1,21 +1,28 @@
 function getFlyDetailsBall(exptInfo)
 
+%% Get eclosion date
+FlyData.eclosionDate = getEclosionDate;
 
 %% Ask user for input
-FlyData.line = input('Line: ','s');
-FlyData.freenessLeft = input('Freeness of left antenna: ','s');
-FlyData.freenessRight = input('Freeness of right antenna: ','s');
-FlyData.notesOnDissection = input('Notes on dissection: ','s');
-FlyData.aim = input('Aim: ','s');
+prompt = {'Line:','Freeness of left antenna:',...
+    'Freeness of right antenna: ','Notes on dissection: ',...
+    'Aim','Is the fly a virgin?','Notes on eclosion date','Male or female?'};
+dlg_title = 'Fly Details';
+num_lines = 1;
+defaultans = struct2cell(getpref('FlyDetails'))';
+out = inputdlg(prompt,dlg_title,num_lines,defaultans);
 
-% Get eclosion date
-set(0,'DefaultFigureWindowStyle','normal')
-h = uicontrol('Style', 'pushbutton', 'Position', [20 150 100 70]);
-uicalendar('DestinationUI', {h, 'String'});
-waitfor(h,'String'); 
-FlyData.eclosionDate = get(h,'String');
-close all
+FlyData.line = cellstr(out(1));
+FlyData.freenessLeft = cellstr(out(2));
+FlyData.freenessRight = cellstr(out(3));
+FlyData.notesOnDissection = cellstr(out(4));
+FlyData.aim = cellstr(out(5));
+FlyData.virgin = cellstr(out(6));
+FlyData.notesOnEclosionDate = cellstr(out(7));
+FlyData.sex = cellstr(out(8));
 
+setpref('FlyDetails',{'line','freenessLeft','freenessRight','notesOnDissection','aim','virgin','eclosion','gender'},...
+    out)
 
 %% Get filename
 prefixCode  = exptInfo.prefixCode;

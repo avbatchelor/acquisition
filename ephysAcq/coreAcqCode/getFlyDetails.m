@@ -1,11 +1,7 @@
 function FlyData = getFlyDetails(exptInfo,basename,varargin)
 
 %% Get eclosion date
-h = uicontrol('Style', 'pushbutton', 'Position', [20 150 100 70]);
-uicalendar('DestinationUI', {h, 'String'});
-waitfor(h,'String'); 
-FlyData.eclosionDate = get(h,'String');
-close all
+FlyData.eclosionDate = getEclosionDate;
 
 %% Ask user for input
 prompt = {'Line:','Are both a2s glued to head?','Freeness of left antenna:',...
