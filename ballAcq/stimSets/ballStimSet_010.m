@@ -40,6 +40,7 @@ end
                 stim.maxVoltage = 1.5;
                 stim.startPadDur = 4;
                 stim.endPadDur = 6;
+                stim.description = [stim.description,', LED off'];
                 LEDtrig = noStimulus;
                 LEDtrig.waveDur = stim.totalDur;
             case 2
@@ -48,15 +49,17 @@ end
                 stim.maxVoltage = 1.5;
                 stim.startPadDur = 4;
                 stim.endPadDur = 6;
+                stim.description = [stim.description,', LED off'];
                 LEDtrig = noStimulus;
                 LEDtrig.waveDur = stim.totalDur;
             case 3
                 stim = AmTone;
-                stim.carrierFreqHz = 300;
+                stim.carrierFreqHz = 140;
                 stim.modFreqHz = 16;
                 stim.maxVoltage = 1.5;
                 stim.startPadDur = 4;
                 stim.endPadDur = 6;
+                stim.description = [stim.description,', LED off'];
                 LEDtrig = noStimulus;
                 LEDtrig.waveDur = stim.totalDur;
             case 4
@@ -64,6 +67,7 @@ end
                 stim.maxVoltage = 1.5;
                 stim.startPadDur = 4;
                 stim.endPadDur = 6;
+                stim.description = [stim.description,', LED on'];
                 LEDtrig = WindStimulus; 
                 LEDtrig.windDur = stim.totalDur - 6;
                 LEDtrig.startPadDur = 1;
@@ -74,17 +78,19 @@ end
                 stim.maxVoltage = 1.5;
                 stim.startPadDur = 4;
                 stim.endPadDur = 6;
+                stim.description = [stim.description,', LED on'];
                 LEDtrig = WindStimulus; 
                 LEDtrig.windDur = stim.totalDur - 6;
                 LEDtrig.startPadDur = 1;
                 LEDtrig.endPadDur = 5;
             case 6
                 stim = AmTone;
-                stim.carrierFreqHz = 300;
+                stim.carrierFreqHz = 140;
                 stim.modFreqHz = 16;
                 stim.maxVoltage = 1.5;
                 stim.startPadDur = 4;
                 stim.endPadDur = 6;
+                stim.description = [stim.description,', LED on'];
                 LEDtrig = WindStimulus; 
                 LEDtrig.windDur = stim.totalDur - 6;
                 LEDtrig.startPadDur = 1;
@@ -92,6 +98,7 @@ end
             case 7
                 stim = noStimulus; 
                 stim.waveDur = 15; 
+                stim.description = 'LED only';
                 LEDtrig = WindStimulus; 
                 LEDtrig.windDur = stim.totalDur - 6;
                 LEDtrig.startPadDur = 1;
@@ -99,6 +106,7 @@ end
             case 8
                 stim = noStimulus; 
                 stim.waveDur = 11; 
+                stim.description = 'LED only';
                 LEDtrig = WindStimulus; 
                 LEDtrig.windDur = stim.totalDur - 6;
                 LEDtrig.startPadDur = 1;
