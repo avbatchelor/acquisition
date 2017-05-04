@@ -32,7 +32,7 @@ for i = 1+settings.inChannelsUsed
 end
 
 %% Run trials
-s.queueOutputData([stim.stimulus]);
+s.queueOutputData([stim.stimulus,LEDtrig.stimulus]);
 rawData = s.startForeground;
 
 %% Close daq objects
@@ -55,7 +55,7 @@ if nargin ~= 0 && nargin ~= 1
     % Convert stim object to structure for saving 
     warning('off','MATLAB:structOnObject')
     Stim = struct(stim); 
-    save(fileName, 'data','trialMeta','Stim','exptInfo');
+    save(fileName, 'data','trialMeta','Stim','exptInfo','LEDtrig');
     
     % Save expt data 
     if trialMeta.trialNum == 1
