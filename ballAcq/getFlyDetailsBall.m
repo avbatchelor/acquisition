@@ -6,7 +6,7 @@ FlyData.eclosionDate = getEclosionDate;
 %% Ask user for input
 prompt = {'Line:','Freeness of left antenna:',...
     'Freeness of right antenna: ','Notes on dissection: ',...
-    'Aim','Is the fly a virgin?','Notes on eclosion date','Male or female?'};
+    'Aim','Is the fly a virgin?','Notes on eclosion date','Male or female?','Temperature'};
 dlg_title = 'Fly Details';
 num_lines = 1;
 defaultans = struct2cell(getpref('FlyDetails'))';
@@ -20,8 +20,9 @@ FlyData.aim = cellstr(out(5));
 FlyData.virgin = cellstr(out(6));
 FlyData.notesOnEclosionDate = cellstr(out(7));
 FlyData.sex = cellstr(out(8));
+FlyData.temperature = cellstr(out(9));
 
-setpref('FlyDetails',{'line','freenessLeft','freenessRight','notesOnDissection','aim','virgin','eclosion','gender'},...
+setpref('FlyDetails',{'line','freenessLeft','freenessRight','notesOnDissection','aim','virgin','eclosion','gender','temp'},...
     out)
 
 %% Get filename
