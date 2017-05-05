@@ -1,4 +1,4 @@
-function sumData = sumBallData2(procData,trialMeta,exptInfo)
+function sumData = sumBallData2(procData,trialMeta,exptInfo,stim)
 
 % same as sumBallData but collects average speed for each trial rather than
 % making a histogram of speed
@@ -32,5 +32,6 @@ sumData.stimNum(trialNum) = trialMeta.stimNum;
 numTrials = sum(sumData.stimNum == trialMeta.stimNum);
 sumData.byStim(trialMeta.stimNum).meanXDisp = sumData.byStim(trialMeta.stimNum).xDisp./numTrials;
 sumData.byStim(trialMeta.stimNum).meanYDisp = sumData.byStim(trialMeta.stimNum).yDisp./numTrials;
+sumData.byStim(trialMeta.stimNum).description = stim.description;
 
 save(fileName, 'sumData');

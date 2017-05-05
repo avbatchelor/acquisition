@@ -12,7 +12,7 @@ warning('off','MATLAB:legend:IgnoringExtraEntries')
 settings = ballSettings;
 [procData.vel(:,1),procData.disp(:,1)] = processBallData(rawData(:,1),settings.xMinVal,settings.xMaxVal,settings,stim);
 [procData.vel(:,2),procData.disp(:,2)] = processBallData(rawData(:,2),settings.yMinVal,settings.yMaxVal,settings,stim);
-sumData = sumBallData2(procData,trialMeta,exptInfo);
+sumData = sumBallData2(procData,trialMeta,exptInfo,stim);
 
 figure(1)
 h(1) = subplot(6,2,1) ;
@@ -94,7 +94,7 @@ else
 end
 for i = 1:numStim
     stimPlotNum = uniqueStim(i);
-    p(i) = plot(sumData.byStim(stimPlotNum).meanXDisp,sumData.byStim(stimPlotNum).meanYDisp,'Color',colorSet(stimPlotNum,:),'DisplayName',stim.description);
+    p(i) = plot(sumData.byStim(stimPlotNum).meanXDisp,sumData.byStim(stimPlotNum).meanYDisp,'Color',colorSet(stimPlotNum,:),'DisplayName',sumData.byStim(stimPlotNum).description);
     hold on 
 end
 symAxis
