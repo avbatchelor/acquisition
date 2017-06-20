@@ -1,6 +1,6 @@
 function stimSet_030(exptInfo,preExptData)
 
-% Odor + wind vs. wind
+% Sine wave with and without CVA 
 
 %% Speaker or piezo 
 exptInfo.stimType = 's';
@@ -23,7 +23,7 @@ while repeat < 4
         fprintf(['Make sure odor is ',stim.odor,'\n'])
         pause
     end
-    acquireTrialWithCamera('none',stim,exptInfo,preExptData,trialMeta);
+    acquireTrial('none',stim,exptInfo,preExptData,trialMeta);
     if count == 3
         count = 1;
         stimCount = stimCount + 1;
@@ -47,14 +47,18 @@ end
 function stim = pickStimulus(stimNum)
 switch stimNum
     case 1
-        stim = CourtshipSong;
+        stim = SineWave;
         stim.speaker = 2;
-        stim.maxVoltage = 0.32;
+        stim.carrierFreqHz = 150; 
+        stim.maxVoltage =0.16;
+        stim.endPadDur = 30;
         stim.odor = 'filter paper only';
     case 2
-        stim = CourtshipSong;
+        stim = SineWave;
         stim.speaker = 2;
-        stim.maxVoltage = 0.32;
+        stim.carrierFreqHz = 150; 
+        stim.maxVoltage =0.16;
+        stim.endPadDur = 30;
         stim.odor = 'filter paper plus CVA';
         %     case 1
         %         stim = PipStimulus;
