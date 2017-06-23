@@ -43,7 +43,7 @@ function stim = pickStimulus(stimNum)
 switch stimNum
     case 1
         stim = noStimulus;
-        stim.waveDur = 1; 
+        stim.waveDur = 30; 
 end
 end
 
