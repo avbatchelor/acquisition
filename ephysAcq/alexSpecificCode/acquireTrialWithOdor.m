@@ -1,4 +1,4 @@
-function [data,settings,stim,trialMeta,exptInfo] = acquireTrialWithOdor(pulseType,stim,exptInfo,preExptData,trialMeta,varargin)
+function [data,settings,stim,trialMeta,exptInfo] = acquireTrialWithOdor(pulseType,stim,exptInfo,preExptData,trialMeta,currentCommand,varargin)
 
 fprintf('\n*********** Acquiring Trial ***********') 
 
@@ -34,12 +34,15 @@ switch pulseType
         settings.pulse.Amp = -5/6;
 end   
 
+pulseStart = round(length(stim.stimulus)/3);
+pulseEnd = pulseStart*2;
+
 if ~exist('currentCommand','var')
     settings.pulse.Command = zeros(size(stim.stimulus));
-    settings.pulse.Command(settings.pulse.Start:settings.pulse.End) = settings.pulse.Amp;
+    settings.pulse.Command(pulseStart:pulseEnd) = settings.pulse.Amp;
 else 
     settings.pulse.Command = currentCommand; 
-    settings.pulse.Command(settings.pulse.Start:settings.pulse.End) = settings.pulse.Amp;
+%     settings.pulse.Command(pulseStart:pulseEnd) = settings.pulse.Amp;
 end
 
 %% Configure daq
@@ -50,12 +53,13 @@ devID = 'Dev1';
 s = daq.createSession('ni');
 s.Rate = stim.sampleRate;
 s.DurationInSeconds = stim.totalDur;
+trialMeta.acqSampleRate = s.Rate;
 
 % Analog Channels / names for documentation
-if isa(stim,'WindStimulus')
+if isa(stim,'WindStimulus') || isa(stim,'OptoStimulus')
     s.addAnalogOutputChannel(devID,0,'Voltage'); % Current injection commmand
     s.addDigitalChannel('Dev1','port0/line4','OutputOnly');
-    disp('Using wind stimulus')
+    disp('Using wind/opto stimulus')
     outputData = [settings.pulse.Command,stim.stimulus];
 else 
     s.addAnalogOutputChannel(devID,0:1,'Voltage'); % Speaker/piezo command & current injection command
@@ -132,7 +136,7 @@ s.stop;
 s.stop;
 
 %% Plot data
-plotData(stim,settings,data)
+plotData(stim,data,trialMeta)
 
 
 

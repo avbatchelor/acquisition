@@ -13,7 +13,12 @@ archiveExpCode(exptInfo)
 % carrierRange = 50:50:450;
 % voltage = [0.32];
 % carrierRange = 50:25:300;
-[carrierRange,voltage] = selectStim;
+%[carrierRange,voltage] = selectStim;
+%% standard
+% carrierRange = 100:50:500; 
+% voltage = [0.04,0.16,0.64];
+carrierRange = 100:10:150; 
+voltage = [0.64];
 numberOfStimuli = length(voltage)*length(carrierRange);
 numFreq = length(carrierRange);
 
@@ -28,7 +33,7 @@ while repeat < 4
     fprintf(['\nRepeatNum = ',num2str(repeat)])
     stim = pickStimulus(trialMeta.stimNum,voltage,carrierRange,numFreq);
     switchSpeaker(stim.speaker);
-    acquireTrialWithCamera('none',stim,exptInfo,preExptData,trialMeta);
+    acquireTrial('none',stim,exptInfo,preExptData,trialMeta);
     if count == numberOfStimuli
         count = 1;
         stimRan = randperm(numberOfStimuli);

@@ -12,7 +12,7 @@ archiveExpCode(exptInfo)
 currentInjectionTrial(exptInfo,preExptData)
 
 %% Set up and acquire with the stimulus set
-voltage = [0.16,0.32,0.64];
+voltage = [0.04,0.16,0.64];
 numberOfStimuli = 2*length(voltage);
 stimRan = randperm(numberOfStimuli);
 
@@ -24,7 +24,7 @@ while repeat < 6
     fprintf(['\nRepeatNum = ',num2str(repeat)])
     stim = pickStimulus(trialMeta.stimNum,voltage);
     switchSpeaker(stim.speaker);
-    acquireTrialWithCamera('none',stim,exptInfo,preExptData,trialMeta);
+    acquireTrial('none',stim,exptInfo,preExptData,trialMeta);
     if count == numberOfStimuli
         count = 1;
         stimRan = randperm(numberOfStimuli);

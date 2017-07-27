@@ -12,7 +12,7 @@ archiveExpCode(exptInfo)
 currentInjectionTrial(exptInfo,preExptData)
 
 %% Set up and acquire with the stimulus set
-numberOfStimuli = 1;
+numberOfStimuli = 2;
 stimRan = randperm(numberOfStimuli);
 
 count = 1;
@@ -43,8 +43,14 @@ switch stimNum
     case 1
         stim = SineWave;
         stim.speaker = 2;
-        stim.carrierFreqHz = 150; 
-        stim.maxVoltage =0.32;
+        stim.carrierFreqHz = 100; 
+        stim.maxVoltage =0.16;
+        stim.endPadDur = 60;
+    case 2
+        stim = SineWave;
+        stim.speaker = 2;
+        stim.carrierFreqHz = 100; 
+        stim.maxVoltage =0.64;
         stim.endPadDur = 60;
 end
 end

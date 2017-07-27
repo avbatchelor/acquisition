@@ -40,36 +40,36 @@ clear FS ;
         switch stimNum
             case 1
                 stim = SineWave;
-                stim.carrierFreqHz = 240;
+                stim.carrierFreqHz = 110;
                 stim.probe = 'left';
-                stim.maxVoltage = 0.16;
+                stim.maxVoltage = 0.04;
             case 2
                 % Saturation test
                 stim = SineWave;
-                stim.carrierFreqHz = 240;
-                stim.maxVoltage = 0.32;
+                stim.carrierFreqHz = 110;
+                stim.maxVoltage = 0.16;
                 stim.probe = 'left';
             case 3
                 stim = SineWave;
-                stim.carrierFreqHz = 240;
+                stim.carrierFreqHz = 110;
                 stim.probe = 'off';
-                stim.maxVoltage = 0.16;
+                stim.maxVoltage = 0.04;
             case 4
                 % Saturation test
                 stim = SineWave;
-                stim.carrierFreqHz = 240;
-                stim.maxVoltage = 0.32;
+                stim.carrierFreqHz = 110;
+                stim.maxVoltage = 0.16;
                 stim.probe = 'off';
             case 5
                 stim = SineWave;
-                stim.carrierFreqHz = 240;
+                stim.carrierFreqHz = 110;
                 stim.probe = 'right';
-                stim.maxVoltage = 0.16;
+                stim.maxVoltage = 0.04;
             case 6
                 % Saturation test
                 stim = SineWave;
-                stim.carrierFreqHz = 240;
-                stim.maxVoltage = 0.32;
+                stim.carrierFreqHz = 110;
+                stim.maxVoltage = 0.16;
                 stim.probe = 'right';
         end
     end

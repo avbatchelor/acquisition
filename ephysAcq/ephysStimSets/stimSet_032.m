@@ -23,7 +23,7 @@ while repeat < 3
     fprintf(['\nRepeatNum = ',num2str(repeat)])
     stim = pickStimulus(trialMeta.stimNum);
     switchSpeaker(stim.speaker);
-    acquireTrial('none',stim,exptInfo,preExptData,trialMeta);
+    acquireTrialWithCamera('none',stim,exptInfo,preExptData,trialMeta);
     if count == numberOfStimuli
         count = 1;
         stimRan = randperm(numberOfStimuli);
@@ -43,13 +43,13 @@ switch stimNum
     case 1
         stim = Chirp;
         stim.speaker = 2;
-        stim.maxVoltage =0.32;
+        stim.maxVoltage =0.64;
         stim.endPadDur = 10;
     case 2
         stim = Chirp;
         stim.startFrequency  = 1500;
         stim.endFrequency    = 90;
-        stim.maxVoltage =0.32;
+        stim.maxVoltage =0.64;
         stim.endPadDur = 10;
     case 3
         stim = Chirp;
@@ -65,13 +65,13 @@ switch stimNum
     case 5
         stim = Chirp;
         stim.speaker = 2;
-        stim.maxVoltage =0.08;
+        stim.maxVoltage =0.04;
         stim.endPadDur = 10;
     case 6
         stim = Chirp;
         stim.startFrequency  = 1500;
         stim.endFrequency    = 90;
-        stim.maxVoltage =0.08;
+        stim.maxVoltage =0.04;
         stim.endPadDur = 10;
 end
 end
