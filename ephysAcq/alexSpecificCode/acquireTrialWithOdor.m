@@ -37,13 +37,13 @@ end
 pulseStart = round(length(stim.stimulus)/3);
 pulseEnd = pulseStart*2;
 
-if ~exist('currentCommand','var')
-    settings.pulse.Command = zeros(size(stim.stimulus));
-    settings.pulse.Command(pulseStart:pulseEnd) = settings.pulse.Amp;
-else 
-    settings.pulse.Command = currentCommand; 
+% if ~exist('currentCommand','var')
+%     settings.pulse.Command = zeros(size(stim.stimulus));
 %     settings.pulse.Command(pulseStart:pulseEnd) = settings.pulse.Amp;
-end
+% else 
+    settings.pulse.Command = currentCommand; 
+% %     settings.pulse.Command(pulseStart:pulseEnd) = settings.pulse.Amp;
+% end
 
 %% Configure daq
 % daqreset;

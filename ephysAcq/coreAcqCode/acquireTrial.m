@@ -112,7 +112,7 @@ if pulseType == 'i'
 end
 
 %% Only if saving data
-if nargin ~= 0 && nargin ~= 1
+if nargin ~= 0 && nargin ~= 1 && isfield(exptInfo,'prefixCode')
     % Get filename and save trial data
     [fileName,path,trialMeta.trialNum] = getDataFileName(exptInfo);
     fprintf(['\nTrial Number ', num2str(trialMeta.trialNum)])

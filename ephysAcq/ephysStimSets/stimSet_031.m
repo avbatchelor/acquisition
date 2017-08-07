@@ -27,7 +27,7 @@ while repeat < 10
     fprintf(['\nRepeatNum = ',num2str(repeat)])
     stim = pickStimulus(trialMeta.stimNum);
     switchSpeaker(stim.speaker);
-    acquireTrialWithCamera('i',stim,exptInfo,preExptData,trialMeta);
+    acquireTrial('i',stim,exptInfo,preExptData,trialMeta);
     if count == numberOfStimuli
         count = 1;
         stimRan = randperm(numberOfStimuli);
@@ -43,7 +43,7 @@ function stim = pickStimulus(stimNum)
 switch stimNum
     case 1
         stim = noStimulus;
-        stim.waveDur = 30; 
+        stim.waveDur = 10; 
 end
 end
 

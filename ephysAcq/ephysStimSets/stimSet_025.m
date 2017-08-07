@@ -15,10 +15,10 @@ archiveExpCode(exptInfo)
 % carrierRange = 50:25:300;
 %[carrierRange,voltage] = selectStim;
 %% standard
-% carrierRange = 100:50:500; 
-% voltage = [0.04,0.16,0.64];
-carrierRange = 100:10:150; 
-voltage = [0.64];
+carrierRange = 100:50:500; 
+voltage = [0.04,0.16,0.64];
+% carrierRange = 220; 
+% voltage = [0.64];
 numberOfStimuli = length(voltage)*length(carrierRange);
 numFreq = length(carrierRange);
 
@@ -27,7 +27,7 @@ stimRan = randperm(numberOfStimuli);
 
 count = 1;
 repeat = 1;
-while repeat < 4
+while repeat < 20
     trialMeta.stimNum = stimRan(count);
     fprintf(['\nStimNum = ',num2str(trialMeta.stimNum)])
     fprintf(['\nRepeatNum = ',num2str(repeat)])

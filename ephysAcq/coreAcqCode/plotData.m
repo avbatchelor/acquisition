@@ -1,7 +1,7 @@
 function plotData(stim,data,trialMeta)
 
 figure(1) 
-setCurrentFigurePosition(2)
+setCurrentFigurePosition(1)
 
 sampTime = (1:length(data.voltage))./trialMeta.acqSampleRate;
 

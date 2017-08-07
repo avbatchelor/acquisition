@@ -34,7 +34,7 @@ while repeat < 4
     acquireTrialWithOdor('none',stim,exptInfo,preExptData,trialMeta);
     if count == 3
         count = 1;
-        stimCount = 2;
+        stimCount = stimCount+1;
         stim.state = state{2};
     else
         count = count+1;
