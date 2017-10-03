@@ -1,7 +1,8 @@
 function getFlyDetailsBall(exptInfo)
 
 %% Get eclosion date
-FlyData.eclosionDate = getEclosionDate;
+FlyData.eclosionDate = getDate('Eclosion');
+FlyData.antennaGluingDate = getDate('Antenna gluing');
 
 %% Ask user for input
 prompt = {'Line:','Freeness of left antenna:',...
@@ -15,14 +16,17 @@ out = inputdlg(prompt,dlg_title,num_lines,defaultans);
 FlyData.line = cellstr(out(1));
 FlyData.freenessLeft = cellstr(out(2));
 FlyData.freenessRight = cellstr(out(3));
-FlyData.notesOnDissection = cellstr(out(4));
-FlyData.aim = cellstr(out(5));
-FlyData.virgin = cellstr(out(6));
-FlyData.notesOnEclosionDate = cellstr(out(7));
-FlyData.sex = cellstr(out(8));
-FlyData.temperature = cellstr(out(9));
+FlyData.a2Left = cellstr(out(4));
+FlyData.a2Right = cellstr(out(5));
+FlyData.notesOnDissection = cellstr(out(6));
+FlyData.aim = cellstr(out(7));
+FlyData.virgin = cellstr(out(8));
+FlyData.notesOnEclosionDate = cellstr(out(9));
+FlyData.sex = cellstr(out(10));
+FlyData.temperature = cellstr(out(11));
+FlyData.humidity = cellstr(out(12));
 
-setpref('FlyDetails',{'line','freenessLeft','freenessRight','notesOnDissection','aim','virgin','eclosion','gender','temp'},...
+setpref('FlyDetails',{'line','freenessLeft','freenessRight','a2Left','a2Right','notesOnDissection','aim','virgin','eclosion','gender','temp','humidity'},...
     out)
 
 %% Get filename

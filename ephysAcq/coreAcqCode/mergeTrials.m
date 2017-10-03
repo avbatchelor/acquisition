@@ -54,6 +54,9 @@ else
         GroupData(stimNum).current(trialInd,:) = data.current;
         GroupData(stimNum).voltage(trialInd,:) = data.voltage;
         GroupData(stimNum).piezoSG(trialInd,:) = data.piezoSG;
+        % Spike sorting 
+        GroupData(stimNum).spikes{trialInd} = spikeDetection(data.current);
+        % Other data 
         GroupData(stimNum).speakerCommand(trialInd,:) = data.speakerCommand;
         startPadEnd = Stim.startPadDur*settings.sampRate.in;
         DCOffset = mean(data.piezoSG(1:startPadEnd));
