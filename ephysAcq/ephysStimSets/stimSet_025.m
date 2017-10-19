@@ -16,7 +16,7 @@ archiveExpCode(exptInfo)
 %[carrierRange,voltage] = selectStim;
 %% standard
 carrierRange = 100:50:500; 
-voltage = [0.04,0.16,0.64];
+voltage = [1];
 % carrierRange = 220; 
 % voltage = [0.64];
 numberOfStimuli = length(voltage)*length(carrierRange);
