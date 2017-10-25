@@ -75,9 +75,10 @@ figure(1)
 subplot(3,1,1)
 plot(Stim.timeVec,data.acqStim1)
 subplot(3,1,2)
-plot(Stim.timeVec,data.acqStim2)
+plot(Stim.timeVec,data.KEraw)
 subplot(3,1,3)
-plot(Stim.timeVec,data.KEraw,'b')
+plot(Stim.timeVec,1000*data.pv,'b')
+ylabel('Particle velocity (mm/s)')
 % hold on 
 % plot(Stim.timeVec,filteredSignal,'r')
 

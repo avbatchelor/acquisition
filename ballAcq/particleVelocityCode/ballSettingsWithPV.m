@@ -22,5 +22,5 @@ settings.sensorPollFreq = 100;
 
 settings.dataDirectory = 'C:\Users\Alex\Documents\Data\ballData\';
 
-settings.preamp_gain = 500;                          % gain on preamplifier
+settings.preamp_gain = 20;                          % gain on preamplifier
 settings.KE_sf = 3.2e-4;                             % KE particle velocity microphone (#2) sensitivity factor at 200 Hz
