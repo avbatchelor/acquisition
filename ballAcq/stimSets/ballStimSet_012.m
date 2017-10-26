@@ -7,7 +7,7 @@ function ballStimSet_012(exptInfo)
 archiveExpCodeBall(exptInfo)
 
 %% Set up and acquire with the stimulus set
-numberOfStimuli = 6;
+numberOfStimuli = 12;
 trialMeta.totalStimNum = numberOfStimuli;
 trialsPerBlock = numberOfStimuli;
 speakerNonRan = repmat(1:numberOfStimuli,1,trialsPerBlock/numberOfStimuli);
@@ -17,60 +17,55 @@ count = 1;
 rep = 0;
 while rep < 11
     trialMeta.pauseDur = rand(1,1);
-    pause on 
+    pause on
     pause(trialMeta.pauseDur);
     trialMeta.stimNum = stimRan(count);
-    pickStimNum = round(trialMeta.stimNum/2);
+    pickStimNum = round(trialMeta.stimNum);
     stim = pickStimulus(pickStimNum);
     trialMeta.outputCh = switchSpeakerBall(stim.speaker);
     acquireBallTrialWithPV(stim,exptInfo,trialMeta);
     if count == trialsPerBlock
         count = 1;
         stimRan = speakerNonRan(randperm(trialsPerBlock));
-        rep = rep + 1; 
+        rep = rep + 1;
     else
         count = count+1;
     end
 end
 
     function stim = pickStimulus(stimNum)
+        voltageRange = [1.5,1.2,0.6,0.3,0.15,0.075];
         switch stimNum
-            case 1
+            case num2cell(1:6)
                 stim = PipStimulus;
-                stim.startPadDur = 2; 
-                stim.endPadDur = 2; 
-                stim.speaker = 3;     % Left speaker   
-                stim.maxVoltage = 1.5;
-            case 2
-                stim = PipStimulus;
-                stim.startPadDur = 2; 
-                stim.endPadDur = 2; 
-                stim.speaker = 3;     % Left speaker   
-                stim.maxVoltage = 0.8*1.5;
-            case 3
-                stim = PipStimulus;
-                stim.startPadDur = 2; 
-                stim.endPadDur = 2; 
-                stim.speaker = 3;     % Left speaker   
-                stim.maxVoltage = 0.4*1.5;
-            case 4
-                stim = PipStimulus;
-                stim.startPadDur = 2; 
-                stim.endPadDur = 2; 
-                stim.speaker = 3;     % Left speaker   
-                stim.maxVoltage = 0.2*1.5;
-            case 5
-                stim = PipStimulus;
-                stim.startPadDur = 2; 
-                stim.endPadDur = 2; 
-                stim.speaker = 3;     % Left speaker   
-                stim.maxVoltage = 0.1*1.5;
-            case 6
-                stim = PipStimulus;
-                stim.startPadDur = 2; 
-                stim.endPadDur = 2; 
-                stim.speaker = 3;     % Left speaker   
-                stim.maxVoltage = 0.05*1.5;
+                stim.startPadDur = 2;
+                stim.endPadDur = 2;
+                stim.speaker = 3;     % Left speaker
+                stim.maxVoltage = voltageRange(stimNum);
+            case num2cell(7:12)
+                seriesNum = stimNum - 6;
+                stim = SineWave;
+                stim.carrierFreqHz = 100;
+                stim.startPadDur = 2;
+                stim.endPadDur = 2;
+                stim.speaker = 3;     % Left speaker
+                stim.maxVoltage = voltageRange(seriesNum);
+            case num2cell(13:18)
+                seriesNum = stimNum - 12;
+                stim = SineWave;
+                stim.carrierFreqHz = 200;
+                stim.startPadDur = 2;
+                stim.endPadDur = 2;
+                stim.speaker = 3;     % Left speaker
+                stim.maxVoltage = voltageRange(seriesNum);
+            case num2cell(19:24)
+                seriesNum = stimNum - 18;
+                stim = SineWave;
+                stim.carrierFreqHz = 300;
+                stim.startPadDur = 2;
+                stim.endPadDur = 2;
+                stim.speaker = 3;     % Left speaker
+                stim.maxVoltage = voltageRange(seriesNum);
         end
     end
 
