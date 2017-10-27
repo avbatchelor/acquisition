@@ -52,6 +52,7 @@ if nargin ~= 0 && nargin ~= 1
     % Convert stim object to structure for saving 
     warning('off','MATLAB:structOnObject')
     Stim = struct(stim); 
+    Stim.class = class(stim);
     save(fileName, 'data','trialMeta','Stim','exptInfo');
     
     % Save expt data 
