@@ -14,7 +14,7 @@ speakerNonRan = repmat(1:numberOfStimuli,1,trialsPerBlock/numberOfStimuli);
 stimRan = speakerNonRan(randperm(trialsPerBlock));
 
 count = 1;
-rep = 0;
+rep = 1;
 while rep < 11
     trialMeta.pauseDur = rand(1,1);
     pause on
