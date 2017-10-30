@@ -20,9 +20,11 @@ if strcmp(newFlyExp,'y')
 end
 
 %% Get data specific to particle velocity experiment 
-exptInfo.microphone = selectOption({'KE1','KE2'});
-exptInfo.speaker = str2double(selectOption({'1','2','3','4'}));
+exptInfo.microphone = selectOption('microphone',{'KE1','KE2'});
+exptInfo.speaker = str2double(selectOption('speaker',{'1','2','3','4'}));
 exptInfo.ampGain = input('Enter amp gain: ');
+exptInfo.ampType = selectOption('amplifier type',{'Crown D-45','Crown XLS202'});
+exptInfo.speakerDistance = str2double(selectOption('speaker distance in cm',{'22','27'}));
 
 %% Run experiment with stimulus
 contAns = input('Would you like to start the experiment? ','s');

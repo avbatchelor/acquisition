@@ -1,4 +1,4 @@
-function microphone = selectOption(listStr)
+function microphone = selectOption(typeSelected,listStr)
 
-s = listdlg('PromptString','Select a microphone:','SelectionMode','single','ListString',listStr);
+s = listdlg('PromptString',['Select a :',typeSelected],'SelectionMode','single','ListString',listStr);
 microphone = listStr{s};
