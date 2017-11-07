@@ -6,8 +6,8 @@ FlyData.antennaGluingDate = getDate('Antenna gluing');
 
 %% Ask user for input
 prompt = {'Line:','Freeness of left antenna:',...
-    'Freeness of right antenna: ','Notes on dissection: ',...
-    'Aim','Is the fly a virgin?','Notes on eclosion date','Male or female?','Temperature'};
+    'Freeness of right antenna: ','a2Left glued?','a2Right glued','Notes on dissection: ',...
+    'Aim','Is the fly a virgin?','Notes on eclosion date','Male or female?','Temperature','Humidity'};
 dlg_title = 'Fly Details';
 num_lines = 1;
 defaultans = struct2cell(getpref('FlyDetails'))';

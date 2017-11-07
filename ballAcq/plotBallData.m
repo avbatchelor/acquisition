@@ -4,7 +4,7 @@ close all
 set(0,'DefaultFigureWindowStyle','docked')
 %setCurrentFigurePosition(1);
 
-subplot = @(m,n,p) subtightplot (m, n, p, [0.01 0.05], [0.1 0.01], [0.1 0.01]);
+subplot = @(m,n,p) subtightplot (m, n, p, [0.01 0.05], [0.1 0.05], [0.1 0.01]);
 
 warning('off','MATLAB:legend:IgnoringExtraEntries')
 
@@ -92,10 +92,12 @@ if isfield(trialMeta,'totalStimNum')
 else
     colorSet = distinguishable_colors(numStim,'w');
 end
-for i = 1:numStim
-    stimPlotNum = uniqueStim(i);
-    p(i) = plot(sumData.byStim(stimPlotNum).meanXDisp,sumData.byStim(stimPlotNum).meanYDisp,'Color',colorSet(stimPlotNum,:),'DisplayName',sumData.byStim(stimPlotNum).description);
-    hold on 
+if numStim > 1
+    for i = 1:numStim
+        stimPlotNum = uniqueStim(i);
+        p(i) = plot(sumData.byStim(stimPlotNum).meanXDisp,sumData.byStim(stimPlotNum).meanYDisp,'Color',colorSet(stimPlotNum,:),'DisplayName',sumData.byStim(stimPlotNum).description);
+        hold on 
+    end
 end
 symAxis
 xlabel('X displacement (mm)')

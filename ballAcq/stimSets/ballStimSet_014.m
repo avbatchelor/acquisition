@@ -7,7 +7,7 @@ function ballStimSet_014(exptInfo)
 archiveExpCodeBall(exptInfo)
 
 %% Set up and acquire with the stimulus set
-numberOfStimuli = 24;
+numberOfStimuli = 42;
 trialMeta.totalStimNum = numberOfStimuli;
 trialsPerBlock = numberOfStimuli;
 speakerNonRan = repmat(1:numberOfStimuli,1,trialsPerBlock/numberOfStimuli);
@@ -37,6 +37,7 @@ end
         switch stimNum
             case num2cell(1:6)
                 voltageRange = 0.95:0.05:1.2;
+                seriesNum = stimNum;
                 stim = SineWave;
                 stim.carrierFreqHz = 100;
                 stim.startPadDur = 1;
