@@ -102,9 +102,10 @@ end
 symAxis
 xlabel('X displacement (mm)')
 ylabel('Y displacement (mm)')
-legend(p(:),'Location','eastoutside')
-legend('boxoff')
-
+if numStim>1
+    legend(p(:),'Location','eastoutside')
+    legend('boxoff')
+end
 suptitle(stim.speakerOrder(stim.speaker))
 
 end

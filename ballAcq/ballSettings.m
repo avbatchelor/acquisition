@@ -6,10 +6,12 @@ settings.devID = 'Dev1';
 settings.inChannelsUsed = 0:1;
 
 %% Processing settings
-settings.xMinVal = 0.0378;
-settings.xMaxVal = 4.9032;
-settings.yMinVal = 0.0377;
-settings.yMaxVal = 4.8929;
+settings.xMinVal = 0.0393;
+settings.xMaxVal = 4.8994;
+settings.yMinVal = 0.0392;
+settings.yMaxVal = 4.8890;
+settings.xMidVal = 2.4654;
+settings.yMidVal = 2.4655;
 settings.numInts = 271;
 settings.cutoffFreq = 50;
 settings.aiType = 'SingleEnded';
