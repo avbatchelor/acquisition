@@ -1,4 +1,4 @@
-function [velMm,disp,seq,seqRound] = processBallData(rawData,minVal,maxVal,settings,stim)
+function [velMm,disp,seq,seqRound] = processBallData(rawData,minVal,maxVal,settings,stim,varargin)
 
 %% Low-pass filter 50Hz cutoff
 rate = 2*(settings.cutoffFreq/settings.sampRate);
@@ -29,12 +29,16 @@ seqRound(seqRound<-maxInt) = -maxInt;
 % Convert velocity to mm/s
 velMm = seq.*settings.mmPerCount.*settings.sensorPollFreq;
 
-% Integrate to calcuate displacement 
-disp = cumtrapz(stim.timeVec,velMm);
+if exist('stim','var')
+    % Integrate to calcuate displacement 
+    disp = cumtrapz(stim.timeVec,velMm);
 
-% Set 0 displacement to stimulus start
-stimStartInt = stim.startPadDur*stim.sampleRate +1; 
-disp = disp - disp(stimStartInt,1);
+    % Set 0 displacement to stimulus start
+    stimStartInt = stim.startPadDur*stim.sampleRate +1; 
+    disp = disp - disp(stimStartInt,1);
+else 
+    disp = [];
+end
 
 
 % Check discretisation
