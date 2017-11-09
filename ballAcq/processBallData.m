@@ -1,4 +1,4 @@
-function [velMm,disp] = processBallData(rawData,minVal,maxVal,settings,stim)
+function [velMm,disp,seq,seqRound] = processBallData(rawData,minVal,maxVal,settings,stim)
 
 %% Low-pass filter 50Hz cutoff
 rate = 2*(settings.cutoffFreq/settings.sampRate);
@@ -9,18 +9,21 @@ smoothedData = filtfilt(kb, ka, rawData);
 % Calculate volts per step 
 voltsPerStep = (maxVal - minVal)/(settings.numInts - 1);
 
+midVal = (maxVal-minVal)/2;
 % Subtract minimum value and divide by volts per step 
-seq = round((smoothedData - minVal)./voltsPerStep);
+seq = (smoothedData - midVal)./voltsPerStep;
 %seq = (smoothedData - minVal)./voltsPerStep;
 
+seqRound = round(seq);
+
 % Make sure steps don't go out of range 
-maxInt = settings.numInts -1;
-seq(seq>maxInt) = maxInt;
-seq(seq<0) = 0;
+maxInt = (settings.numInts -1)/2;
+seqRound(seqRound>maxInt) = maxInt;
+seqRound(seqRound<-maxInt) = -maxInt;
 
 % Center at 0
-zeroVal = -1 + (settings.numInts + 1)/2;
-seq = seq - zeroVal;
+% zeroVal = -1 + (settings.numInts + 1)/2;
+% Zeroedseq = seq - zeroVal;
 
 %% Convert to correct units 
 % Convert velocity to mm/s
