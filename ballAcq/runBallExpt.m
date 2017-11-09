@@ -18,6 +18,8 @@ exptInfo.stimSetNum     = stimSetNum;
 if strcmp(newFlyExp,'y')
     exptInfo.flyExpNotes = input('Fly Expt Notes: ','s');
 end
+stampString = getCodeStamp(mfilename('fullpath'));
+exptInfo.codeStamp      = stampString;
 
 %% Get fly details 
 if strcmp(newFly,'y')

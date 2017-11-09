@@ -39,6 +39,8 @@ s.stop;
 %% Allocate data 
 data.xVel = rawData(:,1);
 data.yVel = rawData(:,2);
+data.stimCommand0 = rawData(:,3);
+data.stimCommand1 = rawData(:,4);
 
 %% Only if saving data
 if nargin ~= 0 && nargin ~= 1

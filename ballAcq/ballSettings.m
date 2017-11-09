@@ -3,7 +3,7 @@ function settings = ballSettings
 %% Acquisition settings
 settings.sampRate = 40e3;
 settings.devID = 'Dev1';
-settings.inChannelsUsed = 0:1;
+settings.inChannelsUsed = 0:3;
 
 %% Processing settings
 settings.xMinVal = 0.0393;

@@ -16,8 +16,8 @@ dOut.addDigitalChannel('Dev1','port0/line0:2','OutputOnly');
 dOut.outputSingleScan([0,0,0]);
 
 % Switch one speaker on 
-if spNum ~= 0
-    output(spNum) = 1;
+if spNum ~= 0 || spNum ~= 1
+    output(spNum - 1) = 1;
     dOut.outputSingleScan(output);
 end
 
