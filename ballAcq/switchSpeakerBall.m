@@ -10,13 +10,13 @@ output = [0,0,0];
 
 % Creat digital acquisition session and add channel
 dOut = daq.createSession('ni');
-dOut.addDigitalChannel('Dev1','port0/line0:2','OutputOnly');
+dOut.addDigitalChannel('Dev1','port0/line3:5','OutputOnly');
 
 % First switch all speakers off 
 dOut.outputSingleScan([0,0,0]);
 
 % Switch one speaker on 
-if spNum ~= 0 || spNum ~= 1
+if spNum ~= 1  && spNum~= 0
     output(spNum - 1) = 1;
     dOut.outputSingleScan(output);
 end
@@ -25,7 +25,7 @@ dOut.stop;
 
 if spNum == 1 
     outputCh = 0; 
-elseif
+else
     outputCh = 1; 
 end
 

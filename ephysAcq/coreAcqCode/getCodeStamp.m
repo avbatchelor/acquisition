@@ -20,11 +20,14 @@ function stampString = getCodeStamp(callingFilePath)
     cd(repPath)
 
     % Get the current hash
-    [status, shortHash] = system('git rev-parse --short HEAD');
+    gitPath = 'C:\Users\Alex\AppData\Local\GitHub\PortableGit_624c8416ee51e205b3f892d1d904e06e6f3c57c8\cmd\git.exe';
+    [~, shortHash] = system([gitPath,' rev-parse --short HEAD']);
+%     [status, shortHash] = system('git rev-parse --short HEAD');
     shortHash = regexprep(shortHash,'\n','');
     
     % Find out if the repository is current
-    [status, gitStatus] = system('git status');
+    [~, gitStatus] = system([gitPath,' status']);
+%     [status, gitStatus] = system('git status');
     if isempty(regexp(gitStatus,'working directory clean'))
         % Working directory isn't clean, there are un-committed changes
         currentFlag = '*';

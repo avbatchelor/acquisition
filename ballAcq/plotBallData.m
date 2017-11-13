@@ -30,7 +30,7 @@ set(gca,'XTick',[])
 ylabel({'Lateral Vel';'(mm/s)'})
 set(get(gca,'YLabel'),'Rotation',0,'HorizontalAlignment','right')
 moveXAxis(stim)
-shadestimArea(stim) 
+shadestimArea(stim)
 symAxisY
 
 h(3) = subplot(6,2,5);
@@ -38,7 +38,7 @@ mySimplePlot(stim.timeVec,procData.vel(:,2))
 set(gca,'XTick',[])
 ylabel({'Forward Vel';'(mm/s)'})
 set(get(gca,'YLabel'),'Rotation',0,'HorizontalAlignment','right')
-shadestimArea(stim) 
+shadestimArea(stim)
 moveXAxis(stim)
 symAxisY
 
@@ -47,7 +47,7 @@ mySimplePlot(stim.timeVec,procData.disp(:,1))
 set(gca,'XTick',[])
 ylabel({'X Disp';'(mm)'})
 set(get(gca,'YLabel'),'Rotation',0,'HorizontalAlignment','right')
-shadestimArea(stim) 
+shadestimArea(stim)
 moveXAxis(stim)
 symAxisY
 
@@ -56,14 +56,14 @@ mySimplePlot(stim.timeVec,procData.disp(:,2))
 ylabel({'Y Disp';'(mm)'})
 set(get(gca,'YLabel'),'Rotation',0,'HorizontalAlignment','right')
 line([stim.timeVec(1),stim.timeVec(end)],[0,0],'Color','k')
-shadestimArea(stim) 
+shadestimArea(stim)
 xlabel('Time (s)')
 linkaxes(h(:),'x')
 symAxisY
 
 subplot(6,2,2:2:6)
 plot(procData.disp(:,1),procData.disp(:,2))
-hold on 
+hold on
 plot(procData.disp(1,1),procData.disp(1,2),'go')
 text(procData.disp(1,1),procData.disp(1,2),'start','Color','g','FontSize',12);
 plot(procData.disp(end,1),procData.disp(end,2),'ro')
@@ -92,27 +92,25 @@ if isfield(trialMeta,'totalStimNum')
 else
     colorSet = distinguishable_colors(numStim,'w');
 end
-if numStim > 1
-    for i = 1:numStim
-        stimPlotNum = uniqueStim(i);
-        p(i) = plot(sumData.byStim(stimPlotNum).meanXDisp,sumData.byStim(stimPlotNum).meanYDisp,'Color',colorSet(stimPlotNum,:),'DisplayName',sumData.byStim(stimPlotNum).description);
-        hold on 
-    end
+
+for i = 1:numStim
+    stimPlotNum = uniqueStim(i);
+    p(i) = plot(sumData.byStim(stimPlotNum).meanXDisp,sumData.byStim(stimPlotNum).meanYDisp,'Color',colorSet(stimPlotNum,:),'DisplayName',sumData.byStim(stimPlotNum).description);
+    hold on
 end
+
 symAxis
 xlabel('X displacement (mm)')
 ylabel('Y displacement (mm)')
-if numStim>1
-    legend(p(:),'Location','eastoutside')
-    legend('boxoff')
-end
-suptitle(stim.speakerOrder(stim.speaker))
+legend(p(:),'Location','eastoutside')
+legend('boxoff')
+suptitle(num2str(stim.speakerAngle))
 
 end
 
-function shadestimArea(stim) 
+function shadestimArea(stim)
 gray = [192 192 192]./255;
-pipStarts = stim.startPadDur; 
+pipStarts = stim.startPadDur;
 pipEnds = stim.startPadDur + stim.stimDur;
 Y = ylim(gca);
 X = [pipStarts,pipEnds];
