@@ -19,7 +19,7 @@ while stop == 0
     trialMeta.stimNum = stimRan(count);
     stim = pickStimulus(trialMeta.stimNum);
     trialMeta.totalStimNum = 3;
-    trialMeta.outputCh = switchSpeakerBall(stim.speaker);
+    trialMeta.outputCh = switchSpeakerBall(stim.speakerChannel);
     disp(['Output Channel = ',num2str(trialMeta.outputCh)])
     acquireBallTrial(stim,exptInfo,trialMeta);
     if count == trialsPerBlock
@@ -35,35 +35,27 @@ end
             case 1
                 stim = SineWave;
                 stim.carrierFreqHz = 100;
-                stim.startPadDur = 2;
-                stim.endPadDur = 2;
-                stim.speaker =2;     
-                stim.maxVoltage = 0.92103;
-                stim.speakerAngle = 270; 
-%             case 2
-%                 stim = SineWave;
-%                 stim.carrierFreqHz = 100;
-%                 stim.startPadDur = 2;
-%                 stim.endPadDur = 2;
-%                 stim.speaker = 2;      
-%                 stim.maxVoltage = 0.92103;
-%                 stim.speakerAngle = 0;
-%             case 3
-%                 stim = SineWave;
-%                 stim.carrierFreqHz = 100;
-%                 stim.startPadDur = 2;
-%                 stim.endPadDur = 2;
-%                 stim.speaker = 3;       % Right speaker
-%                 stim.maxVoltage = 0.8338;
-%                 stim.speakerAngle = 90;
-%             case 4
-%                 stim = SineWave;
-%                 stim.carrierFreqHz = 100;
-%                 stim.startPadDur = 2;
-%                 stim.endPadDur = 2;
-%                 stim.speaker = 4;       % Right speaker
-%                 stim.maxVoltage = 0.9732;
-%                 stim.speakerAngle = 270;
+                stim.speaker = 1;
+                stim.speakerChannel = 1;
+                stim.speakerAngle = 270;
+            case 2
+                stim = SineWave;
+                stim.carrierFreqHz = 100;
+                stim.speaker = 2;
+                stim.speakerChannel = 2;
+                stim.speakerAngle = 0;
+            case 3
+                stim = SineWave;
+                stim.carrierFreqHz = 100;
+                stim.speaker = 3;       % Right speaker
+                stim.speakerChannel = 3;
+                stim.speakerAngle = 90;
+            case 4
+                stim = SineWave;
+                stim.carrierFreqHz = 100;
+                stim.speaker = 4;       % Right speaker
+                stim.speakerChannel = 4;
+                stim.speakerAngle = 270;
         end
     end
 
