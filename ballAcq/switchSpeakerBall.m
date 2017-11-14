@@ -13,7 +13,7 @@ dOut = daq.createSession('ni');
 dOut.addDigitalChannel('Dev1','port0/line3:5','OutputOnly');
 
 % First switch all speakers off 
-dOut.outputSingleScan([0,0,0]);
+% dOut.outputSingleScan([0,0,0]);
 
 % Switch one speaker on 
 if spNum ~= 1  && spNum~= 0
