@@ -39,7 +39,7 @@ s.stop;
 %% Allocate data 
 data.KEraw = rawData(:,1);
 data.acqStim1 = rawData(:,2);
-data.acqStim2 = rawData(:,3);
+% data.acqStim2 = rawData(:,3);
 startPadEndIdx = (stim.startPadDur*stim.sampleRate)-1;
 data.pv = cumtrapz(stim.timeVec,(data.KEraw-mean(data.KEraw(1:startPadEndIdx)))./settings.preamp_gain)./settings.KE_sf;
 

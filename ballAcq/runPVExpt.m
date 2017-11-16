@@ -17,14 +17,17 @@ exptInfo.exptStartTime  = datestr(now,'HH:MM:SS');
 exptInfo.stimSetNum     = stimSetNum; 
 if strcmp(newFlyExp,'y')
     exptInfo.flyExpNotes = input('Fly Expt Notes: ','s');
+    %% Get data specific to particle velocity experiment 
+    exptInfo.microphone = selectOption('microphone',{'KE1','KE2'});
+    exptInfo.speaker = str2double(selectOption('speaker',{'1','2','3','4','5'}));
+    exptInfo.ampGain = input('Enter amp gain: ');
+    exptInfo.ampType = selectOption('amplifier type',{'Crown D-45','Crown XLS202','SLA 1'});
+    exptInfo.ampVol = selectOption('amplifier vol',{'22, 16 notches','30, 15 notches'});
+    exptInfo.ampNum = str2double(selectOption('amp Num',{'1','2','3'}));
+    exptInfo.speakerDistance = str2double(selectOption('speaker distance in cm',{'22','27'}));
 end
 
-%% Get data specific to particle velocity experiment 
-exptInfo.microphone = selectOption('microphone',{'KE1','KE2'});
-exptInfo.speaker = str2double(selectOption('speaker',{'1','2','3','4'}));
-exptInfo.ampGain = input('Enter amp gain: ');
-exptInfo.ampType = selectOption('amplifier type',{'Crown D-45','Crown XLS202'});
-exptInfo.speakerDistance = str2double(selectOption('speaker distance in cm',{'22','27'}));
+
 
 %% Run experiment with stimulus
 contAns = input('Would you like to start the experiment? ','s');

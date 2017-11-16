@@ -22,7 +22,7 @@ while rep < 11
     trialMeta.stimNum = stimRan(count);
     pickStimNum = round(trialMeta.stimNum);
     stim = pickStimulus(pickStimNum);
-    trialMeta.outputCh = switchSpeakerBall(stim.speaker);
+    trialMeta.outputCh = stim.speakerChannel-1;
     acquireBallTrialWithPV(stim,exptInfo,trialMeta);
     if count == trialsPerBlock
         count = 1;
@@ -38,65 +38,72 @@ end
             case num2cell(1:6)
                 voltageRange = 0.95:0.05:1.2;
                 seriesNum = stimNum;
-                stim = SineWave;
+                stim = SineWaveVolSet;
                 stim.carrierFreqHz = 100;
                 stim.startPadDur = 1;
                 stim.endPadDur = 1;
-                stim.speaker = 3;     % Left speaker
+                stim.speaker = 5;     % Left speaker
+                stim.speakerChannel = 4;
                 stim.maxVoltage = voltageRange(seriesNum);
             case num2cell(7:12)
                 voltageRange = 0.90:0.05:1.15;
                 seriesNum = stimNum - 6;
-                stim = SineWave;
+                stim = SineWaveVolSet;
                 stim.carrierFreqHz = 140;
                 stim.startPadDur = 1;
                 stim.endPadDur = 1;
-                stim.speaker = 3;     % Left speaker
+                stim.speaker = 5;     % Left speaker
+                stim.speakerChannel = 4;
                 stim.maxVoltage = voltageRange(seriesNum);
             case num2cell(13:18)
                 voltageRange = 0.65:0.05:.90;
                 seriesNum = stimNum - 12;
-                stim = SineWave;
+                stim = SineWaveVolSet;
                 stim.carrierFreqHz = 200;
                 stim.startPadDur = 1;
                 stim.endPadDur = 1;
-                stim.speaker = 3;     % Left speaker
+                stim.speaker = 5;     % Left speaker
+                stim.speakerChannel = 4;
                 stim.maxVoltage = voltageRange(seriesNum);
             case num2cell(19:24)
                 voltageRange = 0.65:0.05:.90;
                 seriesNum = stimNum - 18;
-                stim = SineWave;
+                stim = SineWaveVolSet;
                 stim.carrierFreqHz = 225;
                 stim.startPadDur = 1;
                 stim.endPadDur = 1;
-                stim.speaker = 3;     % Left speaker
+                stim.speaker = 5;     % Left speaker
+                stim.speakerChannel = 4;
                 stim.maxVoltage = voltageRange(seriesNum);
             case num2cell(25:30)
                 voltageRange = 0.60:0.05:.85;
                 seriesNum = stimNum - 24;
-                stim = SineWave;
+                stim = SineWaveVolSet;
                 stim.carrierFreqHz = 300;
                 stim.startPadDur = 1;
                 stim.endPadDur = 1;
-                stim.speaker = 3;     % Left speaker
+                stim.speaker = 5;     % Left speaker
+                stim.speakerChannel = 4;
                 stim.maxVoltage = voltageRange(seriesNum);
             case num2cell(31:36)
                 voltageRange = 0.3:0.05:.55;
                 seriesNum = stimNum - 30;
-                stim = SineWave;
+                stim = SineWaveVolSet;
                 stim.carrierFreqHz = 500;
                 stim.startPadDur = 1;
                 stim.endPadDur = 1;
-                stim.speaker = 3;     % Left speaker
+                stim.speaker = 5;     % Left speaker
+                stim.speakerChannel = 4;
                 stim.maxVoltage = voltageRange(seriesNum);
             case num2cell(37:42)
                 voltageRange = 0.2:0.05:.45;
                 seriesNum = stimNum - 36;
-                stim = SineWave;
+                stim = SineWaveVolSet;
                 stim.carrierFreqHz = 800;
                 stim.startPadDur = 1;
                 stim.endPadDur = 1;
-                stim.speaker = 3;     % Left speaker
+                stim.speaker = 5;     % Left speaker
+                stim.speakerChannel = 4;
                 stim.maxVoltage = voltageRange(seriesNum);
         end
     end
