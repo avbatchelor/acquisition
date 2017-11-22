@@ -12,7 +12,7 @@ warning('off','MATLAB:legend:IgnoringExtraEntries')
 settings = ballSettings;
 [procData.vel(:,1),procData.disp(:,1)] = processBallData(rawData(:,1),settings.xMinVal,settings.xMaxVal,settings,stim);
 [procData.vel(:,2),procData.disp(:,2)] = processBallData(rawData(:,2),settings.yMinVal,settings.yMaxVal,settings,stim);
-sumData = sumBallData2(procData,trialMeta,exptInfo,stim);
+% sumData = sumBallData2(procData,trialMeta,exptInfo,stim);
 
 figure(1)
 h(1) = subplot(6,2,1) ;
@@ -32,6 +32,10 @@ set(get(gca,'YLabel'),'Rotation',0,'HorizontalAlignment','right')
 moveXAxis(stim)
 shadestimArea(stim)
 symAxisY
+Vxy = sqrt((procData.vel(:,1).^2)+(procData.vel(:,2).^2));
+trialSpeed = mean(Vxy);
+title(['Mean speed = ',num2str(trialSpeed),' mm/s'])
+
 
 h(3) = subplot(6,2,5);
 mySimplePlot(stim.timeVec,procData.vel(:,2))
@@ -74,36 +78,37 @@ symAxis
 ylabel('Y displacement (mm)')
 title('X-Y displacement')
 
-subtightplot (6, 2, 11, [0.1 0.05], [0.1 0.01], [0.1 0.01]);
-bar(1:length(sumData.trialSpeed),sumData.trialSpeed)
-xlim([-20 20])
-xlabel('Trial number')
-ylabel('Trial average speed (mm/s)')
-set(get(gca,'YLabel'),'Rotation',0,'HorizontalAlignment','right')
-box off;
-set(gca,'TickDir','out')
-axis tight
+%% Trial speed 
+% subtightplot (6, 2, 11, [0.1 0.05], [0.1 0.01], [0.1 0.01]);
+% bar(1:length(sumData.trialSpeed),sumData.trialSpeed)
+% xlim([-20 20])
+% xlabel('Trial number')
+% ylabel('Trial average speed (mm/s)')
+% set(get(gca,'YLabel'),'Rotation',0,'HorizontalAlignment','right')
+% box off;
+% set(gca,'TickDir','out')
+% axis tight
 
-subtightplot (6, 2, 8:2:12, [0.1 0.05], [0.1 0.01], [0.1 0.01]);
-uniqueStim = unique(sumData.stimNum);
-numStim = length(uniqueStim);
-if isfield(trialMeta,'totalStimNum')
-    colorSet = distinguishable_colors(trialMeta.totalStimNum,'w');
-else
-    colorSet = distinguishable_colors(numStim,'w');
-end
-
-for i = 1:numStim
-    stimPlotNum = uniqueStim(i);
-    p(i) = plot(sumData.byStim(stimPlotNum).meanXDisp,sumData.byStim(stimPlotNum).meanYDisp,'Color',colorSet(stimPlotNum,:),'DisplayName',sumData.byStim(stimPlotNum).description);
-    hold on
-end
-
-symAxis
-xlabel('X displacement (mm)')
-ylabel('Y displacement (mm)')
-legend(p(:),'Location','eastoutside')
-legend('boxoff')
+%% Mean displacement 
+% subtightplot (6, 2, 8:2:12, [0.1 0.05], [0.1 0.01], [0.1 0.01]);
+% uniqueStim = unique(sumData.stimNum);
+% numStim = length(uniqueStim);
+% if isfield(trialMeta,'totalStimNum')
+%     colorSet = distinguishable_colors(trialMeta.totalStimNum,'w');
+% else
+%     colorSet = distinguishable_colors(numStim,'w');
+% end
+% for i = 1:numStim
+%     stimPlotNum = uniqueStim(i);
+%     p(i) = plot(sumData.byStim(stimPlotNum).meanXDisp,sumData.byStim(stimPlotNum).meanYDisp,'Color',colorSet(stimPlotNum,:),'DisplayName',sumData.byStim(stimPlotNum).description);
+%     hold on
+% end
+% 
+% symAxis
+% xlabel('X displacement (mm)')
+% ylabel('Y displacement (mm)')
+% legend(p(:),'Location','eastoutside')
+% legend('boxoff')
 suptitle(num2str(stim.speakerAngle))
 
 end

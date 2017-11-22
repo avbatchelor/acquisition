@@ -41,7 +41,7 @@ end
                 stim.startPadDur = 1;
                 stim.endPadDur = 1;
                 stim.speaker = 3;     % Left speaker
-                stim.speakerChannel = 2;
+                stim.speakerChannel = 1;
 %             case 2
 %                 stim = SineWaveVolSet;
 %                 stim.carrierFreqHz = 140;

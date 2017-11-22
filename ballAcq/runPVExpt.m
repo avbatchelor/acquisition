@@ -25,6 +25,7 @@ if strcmp(newFlyExp,'y')
     exptInfo.ampVol = selectOption('amplifier vol',{'22, 16 notches','30, 15 notches'});
     exptInfo.ampNum = str2double(selectOption('amp Num',{'1','2','3'}));
     exptInfo.speakerDistance = str2double(selectOption('speaker distance in cm',{'22','27'}));
+    exptInfo.ampChannel = str2double(selectOption('amp Channel Num',{'1','2'}));
 end
 
 

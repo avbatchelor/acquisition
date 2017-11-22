@@ -8,11 +8,11 @@ archiveExpCodeBall(exptInfo)
 
 %% Set up and acquire with the stimulus set
 rng('shuffle');
-numberOfStimuli = 4;
+numberOfStimuli = 3;
 trialsPerBlock = 10*numberOfStimuli;
-% speakerNonRan = repmat(1:numberOfStimuli,1,trialsPerBlock/numberOfStimuli);
-% stimRan = speakerNonRan(randperm(trialsPerBlock));
-stimRan = repmat([1,2,3,4],[1,10]);
+speakerNonRan = repmat(1:numberOfStimuli,1,trialsPerBlock/numberOfStimuli);
+stimRan = speakerNonRan(randperm(trialsPerBlock));
+% stimRan = repmat([1,2,3,4],[1,10]);
 
 count = 1;
 stop = 0;
@@ -25,7 +25,7 @@ while stop == 0
     acquireBallTrial(stim,exptInfo,trialMeta);
     if count == trialsPerBlock
         count = 1;
-%         stimRan = speakerNonRan(randperm(trialsPerBlock));
+        stimRan = speakerNonRan(randperm(trialsPerBlock));
     else
         count = count+1;
     end
@@ -51,13 +51,13 @@ end
                 stim.speaker = 3;       % Right speaker
                 stim.speakerChannel = 2;
                 stim.speakerAngle = 90;
-            case 4
-                stim = SineWaveVolSet;
-                stim.carrierFreqHz = 100;
-                stim.speaker = 5;       % Right speaker
-                stim.speakerChannel = 3;
-                stim.speakerAngle = 180;
-                stim.maxVoltage = 0.8;
+%             case 4
+%                 stim = SineWaveVolSet;
+%                 stim.carrierFreqHz = 100;
+%                 stim.speaker = 5;       % Right speaker
+%                 stim.speakerChannel = 3;
+%                 stim.speakerAngle = 180;
+%                 stim.maxVoltage = 0.8;
         end
     end
 
