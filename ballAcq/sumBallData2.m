@@ -26,7 +26,7 @@ else
 end
 
 Vxy = sqrt((procData.vel(:,1).^2)+(procData.vel(:,2).^2));
-sumData.trialSpeed(trialNum) = mean(Vxy);
+sumData.trialSpeed(trialNum) = mean(procData.vel(:,2));
 
 sumData.stimNum(trialNum) = trialMeta.stimNum;
 numTrials = sum(sumData.stimNum == trialMeta.stimNum);

@@ -14,10 +14,10 @@ while toc<3600
     pause(trialMeta.pauseDur);
     trialMeta.stimNum = 1;
     stim = noStimulus;
-    stim.startPadDur = 5;
-    stim.endPadDur = 5;
+    stim.startPad = 10; 
+    stim.endPad = 10;
     stim.speaker = 1; 
-    trialMeta.outputCh = switchSpeakerBall(stim.speaker);
+    trialMeta.outputCh = 1;
     acquireBallTrial(stim,exptInfo,trialMeta);
 end
 

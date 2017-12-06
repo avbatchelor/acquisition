@@ -11,8 +11,8 @@ if ~exist('stim','var')
     stim = noStimulus; 
 end
 
-stimMat = zeros(4,length(stim.stimulus));
-stimMat(trialMeta.outputCh,:) = stim.stimulus;
+stimMat = zeros(length(stim.stimulus),4);
+stimMat(:,trialMeta.outputCh+1) = stim.stimulus;
 
 %% Load settings    
 settings = ballSettings; 
@@ -23,7 +23,7 @@ s.Rate = settings.sampRate;
 s.DurationInSeconds = stim.totalDur;
 
 % Add analog output channels (speaker)
-s.addAnalogOutputChannel(settings.devID,'Voltage');
+s.addAnalogOutputChannel(settings.devID,settings.outChannelsUsed,'Voltage');
 
 % Add analog input channels (sensor data)
 aI = s.addAnalogInputChannel(settings.devID,settings.inChannelsUsed,'Voltage');

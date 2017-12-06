@@ -34,30 +34,23 @@ end
     function stim = pickStimulus(stimNum)
         switch stimNum
             case 1
-                stim = SineWave;
-                stim.carrierFreqHz = 100;
+                stim = PipStimulus;
+                stim.carrierFreqHz = 300;
                 stim.speaker = 1;
                 stim.speakerChannel = 1;
                 stim.speakerAngle = 0;
             case 2
-                stim = SineWave;
-                stim.carrierFreqHz = 100;
+                stim = PipStimulus;
+                stim.carrierFreqHz = 300;
                 stim.speaker = 2;
                 stim.speakerChannel = 0;
                 stim.speakerAngle = 45;
             case 3
-                stim = SineWave;
-                stim.carrierFreqHz = 100;
-                stim.speaker = 3;       % Right speaker
+                stim = PipStimulus;
+                stim.carrierFreqHz = 300;
+                stim.speaker = 3;       
                 stim.speakerChannel = 2;
                 stim.speakerAngle = 90;
-%             case 4
-%                 stim = SineWaveVolSet;
-%                 stim.carrierFreqHz = 100;
-%                 stim.speaker = 5;       % Right speaker
-%                 stim.speakerChannel = 3;
-%                 stim.speakerAngle = 180;
-%                 stim.maxVoltage = 0.8;
         end
     end
 

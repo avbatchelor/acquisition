@@ -1,15 +1,31 @@
-function [velMm,disp,seq,seqRound] = processBallData(rawData,minVal,maxVal,settings,stim,varargin)
+function [velMm,disp,seq,seqRound] = processBallData(rawData,stim,ballAxis)
+
+settings = ballSettings;
 
 %% Low-pass filter 50Hz cutoff
 rate = 2*(settings.cutoffFreq/settings.sampRate);
 [kb, ka] = butter(2,rate);
 smoothedData = filtfilt(kb, ka, rawData);
 
+%% Get mid, min and max val 
+if strcmp(ballAxis,'x')
+    minVal = settings.xMinVal; 
+    midVal = settings.xMidVal;
+    maxVal = settings.xMaxVal; 
+else 
+    minVal = settings.yMinVal; 
+    midVal = settings.yMidVal;
+    maxVal = settings.yMaxVal; 
+end
+
+% midVal = (maxVal-minVal)/2;
+
+
 %% Discretize 
 % Calculate volts per step 
 voltsPerStep = (maxVal - minVal)/(settings.numInts - 1);
 
-midVal = (maxVal-minVal)/2;
+
 % Subtract minimum value and divide by volts per step 
 seq = (smoothedData - midVal)./voltsPerStep;
 %seq = (smoothedData - minVal)./voltsPerStep;
