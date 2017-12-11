@@ -25,26 +25,14 @@ end
 % Calculate volts per step 
 voltsPerStep = (maxVal - minVal)/(settings.numInts - 1);
 
-
 % Subtract minimum value and divide by volts per step 
 seq = (smoothedData - midVal)./voltsPerStep;
 %seq = (smoothedData - minVal)./voltsPerStep;
 
-seqRound = round(seq);
-
-% Make sure steps don't go out of range 
-maxInt = (settings.numInts -1)/2;
-seqRound(seqRound>maxInt) = maxInt;
-seqRound(seqRound<-maxInt) = -maxInt;
-
-% Center at 0
-% zeroVal = -1 + (settings.numInts + 1)/2;
-% Zeroedseq = seq - zeroVal;
-
-%% Convert to correct units 
 % Convert velocity to mm/s
 velMm = seq.*settings.mmPerCount.*settings.sensorPollFreq;
 
+%% Calculate displacement 
 if exist('stim','var')
     % Integrate to calcuate displacement 
     disp = cumtrapz(stim.timeVec,velMm);
@@ -56,7 +44,19 @@ else
     disp = [];
 end
 
+%% Discretize
+seqRound = round(seq);
 
+% Make sure steps don't go out of range 
+maxInt = (settings.numInts -1)/2;
+seqRound(seqRound>maxInt) = maxInt;
+seqRound(seqRound<-maxInt) = -maxInt;
+
+% Center at 0
+% zeroVal = -1 + (settings.numInts + 1)/2;
+% Zeroedseq = seq - zeroVal;
+
+%% Check 
 % Check discretisation
 % seqUnrounded = (rawData - minVal)./voltsPerStep;
 % seqUnrounded = seqUnrounded - zeroVal;

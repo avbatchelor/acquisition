@@ -11,6 +11,7 @@ if ~exist('stim','var')
     stim = noStimulus; 
 end
 
+%% Create stimulus matrix 
 stimMat = zeros(length(stim.stimulus),4);
 stimMat(:,trialMeta.outputCh+1) = stim.stimulus;
 
