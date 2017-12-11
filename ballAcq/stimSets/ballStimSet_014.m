@@ -7,7 +7,7 @@ function ballStimSet_014(exptInfo)
 archiveExpCodeBall(exptInfo)
 
 %% Set up and acquire with the stimulus set
-numberOfStimuli = 42;
+numberOfStimuli = 49;
 trialMeta.totalStimNum = numberOfStimuli;
 trialsPerBlock = numberOfStimuli;
 speakerNonRan = repmat(1:numberOfStimuli,1,trialsPerBlock/numberOfStimuli);
@@ -35,8 +35,10 @@ end
 
     function stim = pickStimulus(stimNum)
         switch stimNum
-            case num2cell(1:6)
-                voltageRange = 0.95:0.05:1.2;
+            case num2cell(1:7)
+                midVoltage = .9; 
+                increment = 0.1;                 
+                voltageRange = [midVoltage-increment*3:increment:midVoltage,midVoltage+increment:increment:midVoltage+increment*3];
                 seriesNum = stimNum;
                 stim = SineWaveVolSet;
                 stim.carrierFreqHz = 100;
@@ -45,8 +47,10 @@ end
                 stim.speaker = 5;     % Left speaker
                 stim.speakerChannel = 4;
                 stim.maxVoltage = voltageRange(seriesNum);
-            case num2cell(7:12)
-                voltageRange = 0.90:0.05:1.15;
+            case num2cell(8:14)
+                midVoltage = .6; 
+                increment = 0.1;                 
+                voltageRange = [midVoltage-increment*3:increment:midVoltage,midVoltage+increment:increment:midVoltage+increment*3];
                 seriesNum = stimNum - 6;
                 stim = SineWaveVolSet;
                 stim.carrierFreqHz = 140;
@@ -55,8 +59,10 @@ end
                 stim.speaker = 5;     % Left speaker
                 stim.speakerChannel = 4;
                 stim.maxVoltage = voltageRange(seriesNum);
-            case num2cell(13:18)
-                voltageRange = 0.65:0.05:.90;
+            case num2cell(15:21)
+                midVoltage = .6; 
+                increment = 0.1;                 
+                voltageRange = [midVoltage-increment*3:increment:midVoltage,midVoltage+increment:increment:midVoltage+increment*3];
                 seriesNum = stimNum - 12;
                 stim = SineWaveVolSet;
                 stim.carrierFreqHz = 200;
@@ -65,8 +71,10 @@ end
                 stim.speaker = 5;     % Left speaker
                 stim.speakerChannel = 4;
                 stim.maxVoltage = voltageRange(seriesNum);
-            case num2cell(19:24)
-                voltageRange = 0.65:0.05:.90;
+            case num2cell(22:28)
+                midVoltage = .6; 
+                increment = 0.1;                 
+                voltageRange = [midVoltage-increment*3:increment:midVoltage,midVoltage+increment:increment:midVoltage+increment*3];
                 seriesNum = stimNum - 18;
                 stim = SineWaveVolSet;
                 stim.carrierFreqHz = 225;
@@ -75,8 +83,10 @@ end
                 stim.speaker = 5;     % Left speaker
                 stim.speakerChannel = 4;
                 stim.maxVoltage = voltageRange(seriesNum);
-            case num2cell(25:30)
-                voltageRange = 0.60:0.05:.85;
+            case num2cell(29:35)
+                midVoltage = .6; 
+                increment = 0.1;                 
+                voltageRange = [midVoltage-increment*3:increment:midVoltage,midVoltage+increment:increment:midVoltage+increment*3];
                 seriesNum = stimNum - 24;
                 stim = SineWaveVolSet;
                 stim.carrierFreqHz = 300;
@@ -85,8 +95,10 @@ end
                 stim.speaker = 5;     % Left speaker
                 stim.speakerChannel = 4;
                 stim.maxVoltage = voltageRange(seriesNum);
-            case num2cell(31:36)
-                voltageRange = 0.3:0.05:.55;
+            case num2cell(36:42)
+                midVoltage = .5; 
+                increment = 0.1;                 
+                voltageRange = [midVoltage-increment*3:increment:midVoltage,midVoltage+increment:increment:midVoltage+increment*3];
                 seriesNum = stimNum - 30;
                 stim = SineWaveVolSet;
                 stim.carrierFreqHz = 500;
@@ -95,8 +107,10 @@ end
                 stim.speaker = 5;     % Left speaker
                 stim.speakerChannel = 4;
                 stim.maxVoltage = voltageRange(seriesNum);
-            case num2cell(37:42)
-                voltageRange = 0.2:0.05:.45;
+            case num2cell(43:49)
+                midVoltage = 1; 
+                increment = 0.4;                 
+                voltageRange = [midVoltage-increment*3:increment:midVoltage,midVoltage+increment:increment:midVoltage+increment*3];
                 seriesNum = stimNum - 36;
                 stim = SineWaveVolSet;
                 stim.carrierFreqHz = 800;
