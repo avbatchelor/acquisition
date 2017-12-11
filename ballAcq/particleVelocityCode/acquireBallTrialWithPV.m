@@ -11,6 +11,9 @@ if ~exist('stim','var')
     stim = noStimulus; 
 end
 
+stimMat = zeros(length(stim.stimulus),4);
+stimMat(:,trialMeta.outputCh+1) = stim.stimulus;
+
 %% Load settings    
 settings = ballSettingsWithPV; 
      
@@ -20,7 +23,7 @@ s.Rate = settings.sampRate;
 s.DurationInSeconds = stim.totalDur;
 
 % Add analog output channels (speaker)
-s.addAnalogOutputChannel(settings.devID,trialMeta.outputCh,'Voltage');
+s.addAnalogOutputChannel(settings.devID,settings.outChannelsUsed,'Voltage');
 
 % Add analog input channels (sensor data)
 aI = s.addAnalogInputChannel(settings.devID,settings.inChannelsUsed,'Voltage');
@@ -29,7 +32,7 @@ for i = 1:length(settings.inChannelsUsed)
 end
 
 %% Run trials
-s.queueOutputData([stim.stimulus]);
+s.queueOutputData([stimMat]);
 rawData = s.startForeground;
 
 %% Close daq objects

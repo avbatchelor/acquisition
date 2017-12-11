@@ -3,7 +3,7 @@ function settings = ballSettingsWithPV
 %% Acquisition settings
 settings.sampRate = 40e3;
 settings.devID = 'Dev3';
-settings.inChannelsUsed = 2:3;
+settings.inChannelsUsed = [2,21];
 
 %% Processing settings
 settings.xMinVal = 0.0490;
@@ -18,6 +18,8 @@ settings.sensorRes  = 8200;
 settings.mmConv = 25.4;
 settings.mmPerCount = settings.mmConv/settings.sensorRes;
 settings.sensorPollFreq = 100; 
+settings.outChannelsUsed = 0:3; 
+
 
 settings.dataDirectory = 'C:\Users\Alex\Documents\Data\ballData\';
 
