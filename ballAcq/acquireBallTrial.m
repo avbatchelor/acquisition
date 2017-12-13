@@ -11,6 +11,7 @@ if ~exist('stim','var')
     stim = noStimulus; 
 end
 
+%% Create stimulus matrix 
 stimMat = zeros(length(stim.stimulus),4);
 stimMat(:,trialMeta.outputCh+1) = stim.stimulus;
 
@@ -31,6 +32,10 @@ for i = 1+settings.inChannelsUsed
     aI(i).InputType = settings.aiType;
 end
 
+% Add digital input channels 
+s.addDigitalChannel(settings.devID,'port0/line0:15','InputOnly');
+
+
 %% Run trials
 s.queueOutputData(stimMat);
 rawData = s.startForeground;
@@ -44,6 +49,8 @@ data.xVel = rawData(:,1);
 data.yVel = rawData(:,2);
 data.stimCommand0 = rawData(:,3);
 data.stimCommand1 = rawData(:,4);
+data.xVelDig = rawData(:,5:12);
+data.yVelDig = rawData(:,13:20);
 
 %% Only if saving data
 if nargin ~= 0 && nargin ~= 1

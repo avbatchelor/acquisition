@@ -42,6 +42,7 @@ end
                 stim.endPadDur = 1;
                 stim.speaker = 6;     % Left speaker
                 stim.speakerChannel = 3;
+                stim.maxVoltage = 1.4127;
             case 2
                 stim = SineWaveVolSet;
                 stim.carrierFreqHz = 140;
@@ -49,7 +50,7 @@ end
                 stim.endPadDur = 1;
                 stim.speaker = 6;     % Left speaker
                 stim.speakerChannel = 3;
-                stim.maxVoltage = 0.5971;
+                stim.maxVoltage = 1.1478;
             case 3
                 stim = SineWaveVolSet;
                 stim.carrierFreqHz = 200;
@@ -57,7 +58,7 @@ end
                 stim.endPadDur = 1;
                 stim.speaker = 6;     % Left speaker
                 stim.speakerChannel = 3;
-                stim.maxVoltage = 0.5557;
+                stim.maxVoltage = 0.92828;
             case 4
                 stim = SineWaveVolSet;
                 stim.carrierFreqHz = 225;
@@ -65,7 +66,7 @@ end
                 stim.endPadDur = 1;
                 stim.speaker = 6;     % Left speaker
                 stim.speakerChannel = 3;
-                stim.maxVoltage = 0.5954;
+                stim.maxVoltage = 0.87775;
             case 5
                 stim = SineWaveVolSet;
                 stim.carrierFreqHz = 300;
@@ -73,7 +74,7 @@ end
                 stim.endPadDur = 1;
                 stim.speaker = 6;     % Left speaker
                 stim.speakerChannel = 3;
-                stim.maxVoltage = 0.5647;
+                stim.maxVoltage = 0.68565;
             case 6
                 stim = SineWaveVolSet;
                 stim.carrierFreqHz = 500;
@@ -81,7 +82,7 @@ end
                 stim.endPadDur = 1;
                 stim.speaker = 6;     % Left speaker
                 stim.speakerChannel = 3;
-                stim.maxVoltage = 0.5321;
+                stim.maxVoltage = 1.0319;
             case 7
                 stim = SineWaveVolSet;
                 stim.carrierFreqHz = 800;
@@ -89,7 +90,7 @@ end
                 stim.endPadDur = 1;
                 stim.speaker = 6;     % Left speaker
                 stim.speakerChannel = 3; 
-                stim.maxVoltage = 0.3714;
+                stim.maxVoltage = 0.72535;
         end
     end
 

@@ -8,9 +8,6 @@ trialNum = trialMeta.trialNum;
 [~, path, fileNamePreamble, ~] = getDataFileNameBall(exptInfo);
 fileName = [path,fileNamePreamble,'onlineSumData.mat'];
 
-%% Histogram settings
-bins = -10:0.5:40;
-
 %% Process and save data
 if trialNum == 1
     sumData.byStim(trialMeta.stimNum).xDisp(:,1) = procData.disp(:,1);

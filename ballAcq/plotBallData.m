@@ -8,12 +8,21 @@ subplot = @(m,n,p) subtightplot (m, n, p, [0.01 0.05], [0.1 0.05], [0.1 0.01]);
 
 warning('off','MATLAB:legend:IgnoringExtraEntries')
 
-%% Decode
+%% Load settings
 settings = ballSettings;
+
+%% Process data 
 [procData.vel(:,1),procData.disp(:,1)] = processBallData(rawData(:,1),stim,'x');
 [procData.vel(:,2),procData.disp(:,2)] = processBallData(rawData(:,2),stim,'y');
+
+digXVel = processDigBallData(rawData(:,5:12));
+digYVel = processDigBallData(rawData(:,13:20));
+
+%% Calculate trial averages 
 sumData = sumBallData2(procData,trialMeta,exptInfo,stim);
 
+%% Plot figures
+% Stimulus 
 figure(1)
 h(1) = subplot(6,2,1) ;
 mySimplePlot(stim.timeVec,stim.stimulus)
@@ -24,10 +33,13 @@ set(get(gca,'YLabel'),'Rotation',0,'HorizontalAlignment','right')
 set(gca,'XColor','white')
 symAxisY
 
+% Lateral speed 
 h(2) = subplot(6,2,3);
 mySimplePlot(stim.timeVec,procData.vel(:,1))
+hold on 
+mySimplePlot(stim.timeVec,digXVel,'g.')
 set(gca,'XTick',[])
-ylabel({'Lateral Vel';'(mm/s)'})
+ylabel({'Lateral Speed';'(mm/s)'})
 set(get(gca,'YLabel'),'Rotation',0,'HorizontalAlignment','right')
 moveXAxis(stim)
 shadestimArea(stim)
@@ -36,16 +48,19 @@ Vxy = sqrt((procData.vel(:,1).^2)+(procData.vel(:,2).^2));
 trialSpeed = mean(Vxy);
 title(['Mean speed = ',num2str(trialSpeed),' mm/s'])
 
-
+% Forward speed 
 h(3) = subplot(6,2,5);
 mySimplePlot(stim.timeVec,procData.vel(:,2))
+hold on 
+mySimplePlot(stim.timeVec,digYVel,'g.')
 set(gca,'XTick',[])
-ylabel({'Forward Vel';'(mm/s)'})
+ylabel({'Forward Speed';'(mm/s)'})
 set(get(gca,'YLabel'),'Rotation',0,'HorizontalAlignment','right')
 shadestimArea(stim)
 moveXAxis(stim)
 symAxisY
 
+% Lateral displacement 
 h(4) = subplot(6,2,7);
 mySimplePlot(stim.timeVec,procData.disp(:,1))
 set(gca,'XTick',[])
@@ -55,6 +70,7 @@ shadestimArea(stim)
 moveXAxis(stim)
 symAxisY
 
+% Forward displacement 
 h(5) = subplot(6,2,9);
 mySimplePlot(stim.timeVec,procData.disp(:,2))
 ylabel({'Y Disp';'(mm)'})
@@ -65,6 +81,7 @@ xlabel('Time (s)')
 linkaxes(h(:),'x')
 symAxisY
 
+% X vs Y displacement
 subplot(6,2,2:2:6)
 plot(procData.disp(:,1),procData.disp(:,2))
 hold on
@@ -78,7 +95,7 @@ symAxis
 ylabel('Y displacement (mm)')
 title('X-Y displacement')
 
-%% Trial speed 
+% Trial speed bar plot 
 subtightplot (6, 2, 11, [0.1 0.05], [0.1 0.01], [0.1 0.01]);
 bar(1:length(sumData.trialSpeed),sumData.trialSpeed)
 xlim([-20 20])
@@ -89,7 +106,7 @@ box off;
 set(gca,'TickDir','out')
 axis tight
 
-%% Mean displacement 
+% Mean displacement 
 subtightplot (6, 2, 8:2:12, [0.1 0.05], [0.1 0.01], [0.1 0.01]);
 uniqueStim = unique(sumData.stimNum);
 numStim = length(uniqueStim);

@@ -8,8 +8,8 @@ archiveExpCodeBall(exptInfo)
 
 %% Set up and acquire with the stimulus set
 rng('shuffle');
-numberOfStimuli = 3;
-trialsPerBlock = 10*numberOfStimuli;
+numberOfStimuli = 4;
+trialsPerBlock = 5*numberOfStimuli;
 speakerNonRan = repmat(1:numberOfStimuli,1,trialsPerBlock/numberOfStimuli);
 stimRan = speakerNonRan(randperm(trialsPerBlock));
 % stimRan = repmat([1,2,3,4],[1,10]);
@@ -35,22 +35,28 @@ end
         switch stimNum
             case 1
                 stim = PipStimulus;
-                stim.carrierFreqHz = 300;
+                stim.carrierFreqHz = 225;
                 stim.speaker = 1;
                 stim.speakerChannel = 1;
                 stim.speakerAngle = 0;
             case 2
                 stim = PipStimulus;
-                stim.carrierFreqHz = 300;
+                stim.carrierFreqHz = 225;
                 stim.speaker = 2;
                 stim.speakerChannel = 0;
                 stim.speakerAngle = 45;
             case 3
                 stim = PipStimulus;
-                stim.carrierFreqHz = 300;
+                stim.carrierFreqHz = 225;
                 stim.speaker = 3;       
                 stim.speakerChannel = 2;
                 stim.speakerAngle = 90;
+            case 4
+                stim = PipStimulus;
+                stim.carrierFreqHz = 225;
+                stim.speaker = 6;       
+                stim.speakerChannel = 3;
+                stim.speakerAngle = 180;
         end
     end
 
