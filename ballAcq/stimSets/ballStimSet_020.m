@@ -1,7 +1,7 @@
-function ballStimSet_018(exptInfo)
+function ballStimSet_020(exptInfo)
 
-% Sine waves of different frequencies with 300Hz pip stimulus for
-% reference, 2 speakers
+% Plays pip stimuli with a range of frequencies with a 225Hz sine wave and
+% no stimulus for reference 
 
 %% Archive this code
 archiveExpCodeBall(exptInfo)
@@ -34,101 +34,105 @@ end
     function stim = pickStimulus(stimNum)
         switch stimNum
             case 1
-                stim = SineWave;
+                stim = PipStimulus;
                 stim.carrierFreqHz = 100;
                 stim.speaker = 2;
                 stim.speakerChannel = 0;
                 stim.speakerAngle = 45;
             case 2
-                stim = SineWave;
+                stim = PipStimulus;
                 stim.carrierFreqHz = 140;
                 stim.speaker = 2;
                 stim.speakerChannel = 0;
                 stim.speakerAngle = 45;
             case 3
-                stim = SineWave;
+                stim = PipStimulus;
                 stim.carrierFreqHz = 200;
                 stim.speaker = 2;
                 stim.speakerChannel = 0;
                 stim.speakerAngle = 45;
             case 4
-                stim = SineWave;
+                stim = PipStimulus;
                 stim.carrierFreqHz = 225;
                 stim.speaker = 2;
                 stim.speakerChannel = 0;
                 stim.speakerAngle = 45;
             case 5 
-                stim = SineWave;
+                stim = PipStimulus;
                 stim.carrierFreqHz = 300;
                 stim.speaker = 2;
                 stim.speakerChannel = 0;
                 stim.speakerAngle = 45;
             case 6
-                stim = SineWave;
+                stim = PipStimulus;
                 stim.carrierFreqHz = 500;
                 stim.speaker = 2;
                 stim.speakerChannel = 0;
                 stim.speakerAngle = 45;
             case 7 
-                stim = SineWave;
+                stim = PipStimulus;
                 stim.carrierFreqHz = 800;
                 stim.speaker = 2;
                 stim.speakerChannel = 0;
                 stim.speakerAngle = 45;
             case 8 
-                stim = PipStimulus;
-                stim.carrierFreqHz = 300;
+                stim = SineWave;
+                stim.carrierFreqHz = 225;
                 stim.speaker = 2;
                 stim.speakerChannel = 0;
                 stim.speakerAngle = 45;
             case 9
-                stim = SineWave;
+                stim = PipStimulus;
                 stim.carrierFreqHz = 100;
                 stim.speaker = 1;
                 stim.speakerChannel = 1;
                 stim.speakerAngle = 315;
             case 10 
-                stim = SineWave;
+                stim = PipStimulus;
                 stim.carrierFreqHz = 140;
                 stim.speaker = 1;
                 stim.speakerChannel = 1;
                 stim.speakerAngle = 315;
             case 11 
-                stim = SineWave;
+                stim = PipStimulus;
                 stim.carrierFreqHz = 200;
                 stim.speaker = 1;
                 stim.speakerChannel = 1;
                 stim.speakerAngle = 315;
             case 12
-                stim = SineWave;
+                stim = PipStimulus;
                 stim.carrierFreqHz = 225;
                 stim.speaker = 1;
                 stim.speakerChannel = 1;
                 stim.speakerAngle = 315;
             case 13
-                stim = SineWave;
-                stim.carrierFreqHz = 300;
-                stim.speaker = 1;
-                stim.speakerChannel = 1;
-                stim.speakerAngle = 315;
-            case 14
-                stim = SineWave;
-                stim.carrierFreqHz = 500;
-                stim.speaker = 1;
-                stim.speakerChannel = 1;
-                stim.speakerAngle = 315;
-            case 15
-                stim = SineWave;
-                stim.carrierFreqHz = 800;
-                stim.speaker = 1;
-                stim.speakerChannel = 1;
-                stim.speakerAngle = 315;  
-            case 16
                 stim = PipStimulus;
                 stim.carrierFreqHz = 300;
                 stim.speaker = 1;
                 stim.speakerChannel = 1;
                 stim.speakerAngle = 315;
+            case 14
+                stim = PipStimulus;
+                stim.carrierFreqHz = 500;
+                stim.speaker = 1;
+                stim.speakerChannel = 1;
+                stim.speakerAngle = 315;
+            case 15
+                stim = PipStimulus;
+                stim.carrierFreqHz = 800;
+                stim.speaker = 1;
+                stim.speakerChannel = 1;
+                stim.speakerAngle = 315;  
+            case 16
+                stim = SineWave;
+                stim.carrierFreqHz = 225;
+                stim.speaker = 1;
+                stim.speakerChannel = 1;
+                stim.speakerAngle = 315;
+            case 17 
+                stim = noStimulus;
+                stim.startPadDur = 2.5; 
+                stim.endPadDur = 2.5;
         end
     end
 

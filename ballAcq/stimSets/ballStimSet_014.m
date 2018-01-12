@@ -1,7 +1,7 @@
 function ballStimSet_014(exptInfo)
 
-% Plays range of stimuli and records particle velocity microphone
-% measurement
+% Particle velocity calibration by playing a range of volumes for each
+% frequency
 
 %% Archive this code
 archiveExpCodeBall(exptInfo)

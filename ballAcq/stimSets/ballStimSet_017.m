@@ -1,7 +1,6 @@
 function ballStimSet_017(exptInfo)
 
-% Produces the default pip train while switching between two speakers with
-% calibrated command voltage
+% Cardinal directions with 225 Hz pip stimulus
 
 %% Archive this code
 archiveExpCodeBall(exptInfo)

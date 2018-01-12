@@ -1,6 +1,6 @@
 function ballStimSet_016(exptInfo)
 
-% Produces the default pip train while switching between two speakers with
+% Produces the default pip train while switching between two speakers at 45 and 315 with
 % calibrated command voltage 
 
 %% Archive this code
@@ -32,17 +32,17 @@ end
         switch stimNum
             case 1
                 stim = PipStimulus;
+                stim.carrierFreqHz = 225;
                 stim.startPadDur = 2; 
                 stim.endPadDur = 2; 
                 stim.speaker = 1;     % Left speaker   
-                stim.maxVoltage = 0.684;
                 stim.speakerAngle = 315;
             case 2
                 stim = PipStimulus;
+                stim.carrierFreqHz = 225;
                 stim.startPadDur = 2; 
                 stim.endPadDur = 2; 
                 stim.speaker = 3;       % Right speaker 
-                stim.maxVoltage = 0.6105;
                 stim.speakerAngle = 45; 
         end
     end

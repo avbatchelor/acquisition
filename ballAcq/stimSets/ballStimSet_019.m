@@ -1,6 +1,6 @@
 function ballStimSet_019(exptInfo)
 
-% No stimulus, minute long trials
+% For calibrating arduino sensor.  No stimulus, 10 second long trials
 
 %% Archive this code
 archiveExpCodeBall(exptInfo)
