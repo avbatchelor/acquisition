@@ -21,7 +21,15 @@ while rep < 11
     pause(trialMeta.pauseDur);
     trialMeta.stimNum = stimRan(count);
     pickStimNum = round(trialMeta.stimNum);
+    
+    % Stimulus
     stim = pickStimulus(pickStimNum);
+    stim.startPadDur = 1;
+    stim.endPadDur = 1;
+    stim.speaker = 1;     
+    stim.speakerChannel = 1;
+    
+    % Run trial 
     trialMeta.outputCh = stim.speakerChannel;
     acquireBallTrialWithPV(stim,exptInfo,trialMeta);
     if count == trialsPerBlock
@@ -36,61 +44,26 @@ end
     function stim = pickStimulus(stimNum)
         switch stimNum
             case 1
-                stim = SineWaveVolSet;
+                stim = SineWave;
                 stim.carrierFreqHz = 100;
-                stim.startPadDur = 1;
-                stim.endPadDur = 1;
-                stim.speaker = 6;     % Left speaker
-                stim.speakerChannel = 3;
-                stim.maxVoltage = 1.4127;
             case 2
-                stim = SineWaveVolSet;
+                stim = SineWave;
                 stim.carrierFreqHz = 140;
-                stim.startPadDur = 1;
-                stim.endPadDur = 1;
-                stim.speaker = 6;     % Left speaker
-                stim.speakerChannel = 3;
-                stim.maxVoltage = 1.1478;
             case 3
-                stim = SineWaveVolSet;
+                stim = SineWave;
                 stim.carrierFreqHz = 200;
-                stim.startPadDur = 1;
-                stim.endPadDur = 1;
-                stim.speaker = 6;     % Left speaker
-                stim.speakerChannel = 3;
-                stim.maxVoltage = 0.92828;
             case 4
-                stim = SineWaveVolSet;
+                stim = SineWave;
                 stim.carrierFreqHz = 225;
-                stim.startPadDur = 1;
-                stim.endPadDur = 1;
-                stim.speaker = 6;     % Left speaker
-                stim.speakerChannel = 3;
-                stim.maxVoltage = 0.87775;
             case 5
-                stim = SineWaveVolSet;
+                stim = SineWave;
                 stim.carrierFreqHz = 300;
-                stim.startPadDur = 1;
-                stim.endPadDur = 1;
-                stim.speaker = 6;     % Left speaker
-                stim.speakerChannel = 3;
-                stim.maxVoltage = 0.68565;
             case 6
-                stim = SineWaveVolSet;
+                stim = SineWave;
                 stim.carrierFreqHz = 500;
-                stim.startPadDur = 1;
-                stim.endPadDur = 1;
-                stim.speaker = 6;     % Left speaker
-                stim.speakerChannel = 3;
-                stim.maxVoltage = 1.0319;
             case 7
-                stim = SineWaveVolSet;
-                stim.carrierFreqHz = 800;
-                stim.startPadDur = 1;
-                stim.endPadDur = 1;
-                stim.speaker = 6;     % Left speaker
-                stim.speakerChannel = 3; 
-                stim.maxVoltage = 0.72535;
+                stim = SineWave;
+                stim.carrierFreqHz = 800; 
         end
     end
 

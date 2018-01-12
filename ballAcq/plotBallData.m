@@ -1,22 +1,13 @@
 function plotBallData(stim,rawData,trialMeta,exptInfo)
 
+%% Figure settings 
 close all
 set(0,'DefaultFigureWindowStyle','docked')
-%setCurrentFigurePosition(1);
-
 subplot = @(m,n,p) subtightplot (m, n, p, [0.01 0.05], [0.1 0.05], [0.1 0.01]);
 
-warning('off','MATLAB:legend:IgnoringExtraEntries')
-
-%% Load settings
-settings = ballSettings;
-
 %% Process data 
-[procData.vel(:,1),procData.disp(:,1)] = processBallData(rawData(:,1),stim,'x');
-[procData.vel(:,2),procData.disp(:,2)] = processBallData(rawData(:,2),stim,'y');
-
-digXVel = processDigBallData(rawData(:,5:12));
-digYVel = processDigBallData(rawData(:,13:20));
+[procData.vel(:,1),procData.disp(:,1)] = processDigBallData(rawData(:,5:12),stim);
+[procData.vel(:,2),procData.disp(:,2)] = processDigBallData(rawData(:,13:20),stim);
 
 %% Calculate trial averages 
 sumData = sumBallData2(procData,trialMeta,exptInfo,stim);
@@ -36,8 +27,6 @@ symAxisY
 % Lateral speed 
 h(2) = subplot(6,2,3);
 mySimplePlot(stim.timeVec,procData.vel(:,1))
-hold on 
-mySimplePlot(stim.timeVec,digXVel,'g.')
 set(gca,'XTick',[])
 ylabel({'Lateral Speed';'(mm/s)'})
 set(get(gca,'YLabel'),'Rotation',0,'HorizontalAlignment','right')
@@ -51,8 +40,6 @@ title(['Mean speed = ',num2str(trialSpeed),' mm/s'])
 % Forward speed 
 h(3) = subplot(6,2,5);
 mySimplePlot(stim.timeVec,procData.vel(:,2))
-hold on 
-mySimplePlot(stim.timeVec,digYVel,'g.')
 set(gca,'XTick',[])
 ylabel({'Forward Speed';'(mm/s)'})
 set(get(gca,'YLabel'),'Rotation',0,'HorizontalAlignment','right')
@@ -69,6 +56,7 @@ set(get(gca,'YLabel'),'Rotation',0,'HorizontalAlignment','right')
 shadestimArea(stim)
 moveXAxis(stim)
 symAxisY
+disp(['Max x disp = ',num2str(max(abs(procData.disp(:,1))))]);
 
 % Forward displacement 
 h(5) = subplot(6,2,9);
@@ -80,6 +68,8 @@ shadestimArea(stim)
 xlabel('Time (s)')
 linkaxes(h(:),'x')
 symAxisY
+disp(['Max y disp = ',num2str(max(abs(procData.disp(:,2))))]);
+
 
 % X vs Y displacement
 subplot(6,2,2:2:6)
@@ -126,7 +116,11 @@ xlabel('X displacement (mm)')
 ylabel('Y displacement (mm)')
 legend(p(:),'Location','eastoutside')
 legend('boxoff')
-suptitle(num2str(stim.speakerAngle))
+if max(abs(procData.vel))>39.4
+    suptitle([num2str(stim.speakerAngle),', Velocity out of range!'])
+else    
+    suptitle(num2str(stim.speakerAngle))
+end
 
 end
 
