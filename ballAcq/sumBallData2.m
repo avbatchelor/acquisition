@@ -8,27 +8,27 @@ trialNum = trialMeta.trialNum;
 [~, path, fileNamePreamble, ~] = getDataFileNameBall(exptInfo);
 fileName = [path,fileNamePreamble,'onlineSumData.mat'];
 
-%% Process and save data
+%% Find average 
 if trialNum == 1
-    sumData.byStim(trialMeta.stimNum).xDisp(:,1) = procData.disp(:,1);
-    sumData.byStim(trialMeta.stimNum).yDisp(:,1) = procData.disp(:,2);
-else
+    sumData.byStim(trialMeta.stimNum).meanXDisp = procData.disp(:,1);
+    sumData.byStim(trialMeta.stimNum).meanYDisp = procData.disp(:,2);
+elseif ~any(sumData.stimNum == trialMeta.stimNum)     % If there are no trials for this stim before, average = this trial
     load(fileName)
-    if ~any(sumData.stimNum == trialMeta.stimNum)
-        sumData.byStim(trialMeta.stimNum).xDisp = NaN(size(procData.disp(:,1)));
-        sumData.byStim(trialMeta.stimNum).yDisp = NaN(size(procData.disp(:,1)));
-    end
-    sumData.byStim(trialMeta.stimNum).xDisp = nansum([sumData.byStim(trialMeta.stimNum).xDisp,procData.disp(:,1)],2);
-    sumData.byStim(trialMeta.stimNum).yDisp = nansum([sumData.byStim(trialMeta.stimNum).yDisp,procData.disp(:,2)],2);
+    sumData.byStim(trialMeta.stimNum).meanXDisp = procData.disp(:,1);
+    sumData.byStim(trialMeta.stimNum).meanYDisp = procData.disp(:,2);
+    sumData.byStim(trialMeta.stimNum).description = stim.description;
+else 
+    load(fileName)
+    numTrials = sum(sumData.stimNum == trialMeta.stimNum);
+    sumData.byStim(trialMeta.stimNum).meanXDisp = (numTrials*sumData.byStim(trialMeta.stimNum).meanXDisp + procData.disp(:,1))/numTrials+1;
+    sumData.byStim(trialMeta.stimNum).meanYDisp = (numTrials*sumData.byStim(trialMeta.stimNum).meanYDisp + procData.disp(:,2))/numTrials+1;
 end
 
-Vxy = sqrt((procData.vel(:,1).^2)+(procData.vel(:,2).^2));
-sumData.trialSpeed(trialNum) = mean(procData.vel(:,2));
+%% Calculate resultant speed for that trial
+sumData.trialSpeed(trialNum) = sqrt((procData.vel(:,1).^2)+(procData.vel(:,2).^2));
 
+%% Get sequence of stim numbers
 sumData.stimNum(trialNum) = trialMeta.stimNum;
-numTrials = sum(sumData.stimNum == trialMeta.stimNum);
-sumData.byStim(trialMeta.stimNum).meanXDisp = sumData.byStim(trialMeta.stimNum).xDisp./numTrials;
-sumData.byStim(trialMeta.stimNum).meanYDisp = sumData.byStim(trialMeta.stimNum).yDisp./numTrials;
-sumData.byStim(trialMeta.stimNum).description = stim.description;
 
+%% Save data
 save(fileName, 'sumData');
