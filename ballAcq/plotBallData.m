@@ -33,9 +33,7 @@ set(get(gca,'YLabel'),'Rotation',0,'HorizontalAlignment','right')
 moveXAxis(stim)
 shadestimArea(stim)
 symAxisY
-Vxy = sqrt((procData.vel(:,1).^2)+(procData.vel(:,2).^2));
-trialSpeed = mean(Vxy);
-title(['Mean speed = ',num2str(trialSpeed),' mm/s'])
+title(['Mean speed = ',num2str(sumData.meanTrialSpeed(end)),' mm/s'])
 
 % Forward speed 
 h(3) = subplot(6,2,5);
@@ -87,7 +85,7 @@ title('X-Y displacement')
 
 % Trial speed bar plot 
 subtightplot (6, 2, 11, [0.1 0.05], [0.1 0.01], [0.1 0.01]);
-bar(1:length(sumData.trialSpeed),sumData.trialSpeed)
+bar(1:length(sumData.meanTrialSpeed),sumData.meanTrialSpeed)
 xlim([-20 20])
 xlabel('Trial number')
 ylabel('Trial average speed (mm/s)')
