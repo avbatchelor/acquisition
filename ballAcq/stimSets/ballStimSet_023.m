@@ -1,6 +1,6 @@
-function ballStimSet_022(exptInfo)
+function ballStimSet_023(exptInfo)
 
-% 225Hz pip stimuli with different AM envelopes, 4 speakers at 45, 135, 225 and 315 
+% 225Hz pip stimuli with different AM envelopes, 4 speakers at 0, 45, 90 and 180 
 
 %% Archive this code
 archiveExpCodeBall(exptInfo)
@@ -40,7 +40,7 @@ end
                 % Direction
                 stim.speaker = 2;
                 stim.speakerChannel = 0;
-                stim.speakerAngle = 135;
+                stim.speakerAngle = 90;
             case 2
                 stim = PipStimulus;
                 % Stimulus parameters
@@ -58,7 +58,7 @@ end
                 % Direction
                 stim.speaker = 6;
                 stim.speakerChannel = 3;
-                stim.speakerAngle = 315;
+                stim.speakerAngle = 0;
             case 4
                 stim = PipStimulus;
                 % Stimulus parameters
@@ -67,7 +67,7 @@ end
                 % Direction
                 stim.speaker = 1;
                 stim.speakerChannel = 1;
-                stim.speakerAngle = 225;
+                stim.speakerAngle = 180;
         end
     end
 
