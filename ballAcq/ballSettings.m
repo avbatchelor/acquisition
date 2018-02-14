@@ -24,5 +24,10 @@ settings.mmConv = 25.4;
 settings.mmPerCount = settings.mmConv/settings.sensorRes;
 settings.sensorPollFreq = 100; 
 
-settings.dataDirectory = 'C:\Users\Alex\Documents\Data\ballData\';
+computer = getComputerID;
+if strcmp(computer,'behavior')
+    settings.dataDirectory = 'C:\Users\Alex\Documents\Data\ballData\';
+elseif strcmp(computer,'desktop')
+    settings.dataDirectory = 'D:\ManuscriptData\rawData\';
+end
 
