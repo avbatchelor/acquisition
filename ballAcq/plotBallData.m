@@ -6,8 +6,8 @@ set(0,'DefaultFigureWindowStyle','docked')
 subplot = @(m,n,p) subtightplot (m, n, p, [0.01 0.05], [0.1 0.05], [0.1 0.01]);
 
 %% Process data 
-[procData.vel(:,1),procData.disp(:,1)] = processDigBallData(rawData(:,5:12),stim,'x');
-[procData.vel(:,2),procData.disp(:,2)] = processDigBallData(rawData(:,13:20),stim,'y');
+[procData.vel(:,1),procData.disp(:,1)] = processDigBallData(rawData(:,5:12),stim,'x',exptInfo);
+[procData.vel(:,2),procData.disp(:,2)] = processDigBallData(rawData(:,13:20),stim,'y',exptInfo);
 
 %% Calculate trial averages 
 sumData = sumBallData2(procData,trialMeta,exptInfo,stim);
