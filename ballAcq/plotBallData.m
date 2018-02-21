@@ -6,8 +6,8 @@ set(0,'DefaultFigureWindowStyle','docked')
 subplot = @(m,n,p) subtightplot (m, n, p, [0.01 0.05], [0.1 0.05], [0.1 0.01]);
 
 %% Process data 
-[procData.vel(:,1),procData.disp(:,1)] = processDigBallData(rawData(:,5:12),stim,'x',exptInfo);
-[procData.vel(:,2),procData.disp(:,2)] = processDigBallData(rawData(:,13:20),stim,'y',exptInfo);
+[procData.vel(:,1),procData.disp(:,1),procData.xSaturationWarning] = processDigBallData(rawData(:,5:12),stim,'x',exptInfo);
+[procData.vel(:,2),procData.disp(:,2),procData.ySaturationWarning] = processDigBallData(rawData(:,13:20),stim,'y',exptInfo);
 
 %% Calculate trial averages 
 sumData = sumBallData2(procData,trialMeta,exptInfo,stim);
@@ -114,11 +114,8 @@ xlabel('X displacement (mm)')
 ylabel('Y displacement (mm)')
 legend(p(:),'Location','eastoutside')
 legend('boxoff')
-if max(abs(procData.vel))>39.4
-    suptitle([num2str(stim.speakerAngle),', Velocity out of range!'])
-else    
-    suptitle(num2str(stim.speakerAngle))
-end
+suptitle([num2str(stim.speakerAngle),', X Sat = ',num2str(procData.xSaturationWarning),...
+    ', Y Sat = ',num2str(procData.ySaturationWarning),', totalX = ',num2str(sumData.totalXWarnings),', totalY = ',num2str(sumData.totalYWarnings)])
 
 end
 

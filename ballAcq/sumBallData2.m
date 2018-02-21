@@ -8,13 +8,16 @@ trialNum = trialMeta.trialNum;
 [~, path, fileNamePreamble, ~] = getDataFileNameBall(exptInfo);
 fileName = [path,fileNamePreamble,'onlineSumData.mat'];
 
-%% Find average 
+%% Load data or create empty matrices 
 if trialNum ~= 1
     load(fileName)
 else 
     sumData.stimNum = [];
+    sumData.totalXWarnings = 0; 
+    sumData.totalYWarnings = 0; 
 end 
 
+%% Find average 
 if ~any(sumData.stimNum == trialMeta.stimNum)     % If there are no trials for this stim before, average = this trial       
     sumData.byStim(trialMeta.stimNum).meanXDisp = procData.disp(:,1);
     sumData.byStim(trialMeta.stimNum).meanYDisp = procData.disp(:,2);
@@ -30,6 +33,10 @@ sumData.meanTrialSpeed(trialNum) = mean(sqrt((procData.vel(:,1).^2)+(procData.ve
 
 %% Get sequence of stim numbers
 sumData.stimNum(trialNum) = trialMeta.stimNum;
+
+%% Accumulate saturation warnings 
+sumData.totalXWarnings = sumData.totalXWarnings + procData.xSaturationWarning; 
+sumData.totalYWarnings = sumData.totalYWarnings + procData.ySaturationWarning; 
 
 %% Save data
 save(fileName, 'sumData');
