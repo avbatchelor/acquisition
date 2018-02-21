@@ -7,7 +7,7 @@ archiveExpCodeBall(exptInfo)
 
 %% Set up and acquire with the stimulus set
 rng('shuffle');
-numberOfStimuli = 2;
+numberOfStimuli = 3;
 trialsPerBlock = 4*numberOfStimuli;
 speakerNonRan = repmat(1:numberOfStimuli,1,trialsPerBlock/numberOfStimuli);
 stimRan = speakerNonRan(randperm(trialsPerBlock));
@@ -50,6 +50,10 @@ end
                 stim.speaker = 6;
                 stim.speakerChannel = 3;
                 stim.speakerAngle = 315;
+            case 3
+                stim = noStimulus;
+                stim.startPadDur = 2;
+                stim.endPadDur = 2.3216;
         end
     end
 
