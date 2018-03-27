@@ -114,8 +114,9 @@ xlabel('X displacement (mm)')
 ylabel('Y displacement (mm)')
 legend(p(:),'Location','eastoutside')
 legend('boxoff')
-suptitle([num2str(stim.speakerAngle),', X Sat = ',num2str(procData.xSaturationWarning),...
-    ', Y Sat = ',num2str(procData.ySaturationWarning),', totalX = ',num2str(sumData.totalXWarnings),', totalY = ',num2str(sumData.totalYWarnings)])
+suptitle({['Angle = ',num2str(stim.speakerAngle)];...
+    ['X Sat = ',num2str(procData.xSaturationWarning),' | Y Sat = ',num2str(procData.ySaturationWarning)];...
+    ['Total X = ',num2str(sumData.totalXWarnings),' | Total Y = ',num2str(sumData.totalYWarnings)]})
 
 end
 
