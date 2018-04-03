@@ -29,5 +29,7 @@ if strcmp(computer,'behavior')
     settings.dataDirectory = 'C:\Users\Alex\Documents\Data\ballData\';
 elseif strcmp(computer,'desktop')
     settings.dataDirectory = 'D:\ManuscriptData\rawData\';
+elseif strcmp(computer,'laptop')
+    settings.dataDirectory = 'D:\ManuscriptData\rawData\';
 end
 
