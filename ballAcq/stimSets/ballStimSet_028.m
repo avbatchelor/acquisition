@@ -1,4 +1,4 @@
-function ballStimSet_023(exptInfo)
+function ballStimSet_028(exptInfo)
 
 % 225Hz pip stimuli with different AM envelopes, 4 speakers at 0, 45, 90 and 180 
 
@@ -58,7 +58,7 @@ end
                 % Direction
                 stim.speaker = 6;
                 stim.speakerChannel = 3;
-                stim.speakerAngle = 0;
+                stim.speakerAngle = 315;
             case 4
                 stim = PipStimulus;
                 % Stimulus parameters
@@ -67,7 +67,7 @@ end
                 % Direction
                 stim.speaker = 1;
                 stim.speakerChannel = 1;
-                stim.speakerAngle = 180;
+                stim.speakerAngle = 270;
             case 5
                 stim = noStimulus;
                 stim.startPadDur = 2;

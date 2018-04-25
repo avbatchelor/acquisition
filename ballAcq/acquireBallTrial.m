@@ -45,12 +45,17 @@ s.stop;
 s.stop;
 
 %% Allocate data 
-data.xVel = rawData(:,1);
-data.yVel = rawData(:,2);
 data.stimCommand0 = rawData(:,3);
 data.stimCommand1 = rawData(:,4);
-data.xVelDig = rawData(:,5:12);
-data.yVelDig = rawData(:,13:20);
+% data.xVel = rawData(:,1);
+% data.yVel = rawData(:,2);
+% data.xVelDig = rawData(:,5:12);
+% data.yVelDig = rawData(:,13:20);
+% Switched axes on 04/24/2018
+data.xVel = rawData(:,2);
+data.yVel = rawData(:,1);
+data.xVelDig = rawData(:,13:20);
+data.yVelDig = rawData(:,5:12);
 
 %% Only if saving data
 if nargin ~= 0 && nargin ~= 1

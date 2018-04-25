@@ -6,8 +6,11 @@ set(0,'DefaultFigureWindowStyle','docked')
 subplot = @(m,n,p) subtightplot (m, n, p, [0.01 0.05], [0.1 0.05], [0.1 0.01]);
 
 %% Process data 
-[procData.vel(:,1),procData.disp(:,1),procData.xSaturationWarning] = processDigBallData(rawData(:,5:12),stim,'x',exptInfo);
-[procData.vel(:,2),procData.disp(:,2),procData.ySaturationWarning] = processDigBallData(rawData(:,13:20),stim,'y',exptInfo);
+% [procData.vel(:,1),procData.disp(:,1),procData.xSaturationWarning] = processDigBallData(rawData(:,5:12),stim,'x',exptInfo);
+% [procData.vel(:,2),procData.disp(:,2),procData.ySaturationWarning] = processDigBallData(rawData(:,13:20),stim,'y',exptInfo);
+% Switched axes on 04/24/2018
+[procData.vel(:,1),procData.disp(:,1),procData.xSaturationWarning] = processDigBallData(rawData(:,13:20),stim,'x',exptInfo);
+[procData.vel(:,2),procData.disp(:,2),procData.ySaturationWarning] = processDigBallData(rawData(:,5:12),stim,'y',exptInfo);
 
 %% Calculate trial averages 
 sumData = sumBallData2(procData,trialMeta,exptInfo,stim);
@@ -22,7 +25,7 @@ set(gca,'XTick',[])
 ylabel({'stim';'(V)'})
 set(get(gca,'YLabel'),'Rotation',0,'HorizontalAlignment','right')
 set(gca,'XColor','white')
-symAxisY
+symAxisY(h(1))
 
 % Lateral speed 
 h(2) = subplot(6,2,3);
@@ -32,7 +35,7 @@ ylabel({'Lateral Speed';'(mm/s)'})
 set(get(gca,'YLabel'),'Rotation',0,'HorizontalAlignment','right')
 moveXAxis(stim)
 shadestimArea(stim)
-symAxisY
+symAxisY(h(2))
 title(['Mean speed = ',num2str(sumData.meanTrialSpeed(end)),' mm/s'])
 
 % Forward speed 
@@ -43,7 +46,7 @@ ylabel({'Forward Speed';'(mm/s)'})
 set(get(gca,'YLabel'),'Rotation',0,'HorizontalAlignment','right')
 shadestimArea(stim)
 moveXAxis(stim)
-symAxisY
+symAxisY(h(3))
 
 % Lateral displacement 
 h(4) = subplot(6,2,7);
@@ -53,7 +56,7 @@ ylabel({'X Disp';'(mm)'})
 set(get(gca,'YLabel'),'Rotation',0,'HorizontalAlignment','right')
 shadestimArea(stim)
 moveXAxis(stim)
-symAxisY
+symAxisY(h(4))
 disp(['Max x disp = ',num2str(max(abs(procData.disp(:,1))))]);
 
 % Forward displacement 
@@ -65,7 +68,7 @@ line([stim.timeVec(1),stim.timeVec(end)],[0,0],'Color','k')
 shadestimArea(stim)
 xlabel('Time (s)')
 linkaxes(h(:),'x')
-symAxisY
+symAxisY(h(5))
 disp(['Max y disp = ',num2str(max(abs(procData.disp(:,2))))]);
 
 
