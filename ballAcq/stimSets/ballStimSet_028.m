@@ -38,8 +38,8 @@ end
                 stim.carrierFreqHz = 225;
                 stim.envelope = 'cosine';
                 % Direction
-                stim.speaker = 2;
-                stim.speakerChannel = 0;
+                stim.speaker = 1;
+                stim.speakerChannel = 1;
                 stim.speakerAngle = 90;
             case 2
                 stim = PipStimulus;
@@ -47,8 +47,8 @@ end
                 stim.carrierFreqHz = 225;
                 stim.envelope = 'cosine';
                 % Direction
-                stim.speaker = 3;
-                stim.speakerChannel = 2;
+                stim.speaker = 6;
+                stim.speakerChannel = 3;
                 stim.speakerAngle = 45;
             case 3
                 stim = PipStimulus;
@@ -56,8 +56,8 @@ end
                 stim.carrierFreqHz = 225;
                 stim.envelope = 'cosine';
                 % Direction
-                stim.speaker = 6;
-                stim.speakerChannel = 3;
+                stim.speaker = 3;
+                stim.speakerChannel = 2;
                 stim.speakerAngle = 315;
             case 4
                 stim = PipStimulus;
@@ -65,8 +65,8 @@ end
                 stim.carrierFreqHz = 225;
                 stim.envelope = 'cosine';
                 % Direction
-                stim.speaker = 1;
-                stim.speakerChannel = 1;
+                stim.speaker = 2;
+                stim.speakerChannel = 0;
                 stim.speakerAngle = 270;
             case 5
                 stim = noStimulus;
