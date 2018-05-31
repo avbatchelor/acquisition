@@ -38,8 +38,8 @@ end
                 stim.carrierFreqHz = 225;
                 stim.envelope = 'cosine';
                 % Direction
-                stim.speaker = 1;
-                stim.speakerChannel = 1;
+                stim.speaker = 3;
+                stim.speakerChannel = 2;
                 stim.speakerAngle = 0;
             case 2
                 stim = noStimulus;
